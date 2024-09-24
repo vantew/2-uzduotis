@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1727038863 source:c:\users\vlue1\desktop\mynewproject2024\main.cpp
+1727194248 source:c:\users\vlue1\desktop\mynewproject2024\main.cpp
 	"Mylib.h"
 	"Stud.h"
 
@@ -10,9 +10,9 @@
 	<iomanip>
 	<algorithm>
 
-1727038287 c:\users\vlue1\desktop\mynewproject2024\stud.h
+1727193373 c:\users\vlue1\desktop\mynewproject2024\stud.h
 	"Mylib.h"
 
-1727038838 source:c:\users\vlue1\desktop\mynewproject2024\stud.cpp
+1727193721 source:c:\users\vlue1\desktop\mynewproject2024\stud.cpp
 	"Stud.h"
 

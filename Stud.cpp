@@ -1,5 +1,4 @@
 #include "Stud.h"
- // for std::sort
 
 void input(Stud &Lok, int hwCount) {
     cout << "Input student's name and surname: " << endl;
@@ -35,7 +34,7 @@ void inputgrades(Stud &Lok) {
     cin >> Lok.name >> Lok.surname;
 
     int hw;
-    double hwSum = 0;
+    int hwSum = 0;
     int hwCount = 0;
 
     cout << "Enter the homework grades for \033[1;3m" << Lok.name << " "
@@ -53,7 +52,7 @@ void inputgrades(Stud &Lok) {
                 hwSum += hw;
                 hwCount++;
                 Lok.HW.push_back(hw);
-                }
+            }
     }
 
     cout << "Enter the exam grade: " << endl;
@@ -71,6 +70,29 @@ void inputgrades(Stud &Lok) {
     Lok.avg = (hwSum + Lok.exam) / (hwCount + 1);
 }
 
+void randomgrades(Stud &Lok, int hwCount) {
+    cout << "Input student's name and surname: " << endl;
+    cin >> Lok.name >> Lok.surname;
+
+    int hw;
+    int hwSum = 0;
+    // Seed the random number generator
+   // std::srand(static_cast<unsigned int>(std::time(0)));
+
+    for (int i = 0; i < hwCount; i++) {
+        int hw = (std::rand() % 10) + 1; // Generate grade between 1 and 10
+        Lok.HW.push_back(hw);
+        hwSum += hw;
+        cout << " a " << hw << " a" <<endl;
+    }
+
+    Lok.exam = (std::rand() % 10) + 1; // Generate grade between 1 and 10
+    Lok.HW.push_back(Lok.exam);
+
+    Lok.med = calculateMedian(Lok.HW);  // Calculate median
+    Lok.avg = (hwSum + Lok.exam) / (hwCount + 1);
+
+}
 
 double calculateMedian(vector<double>& grades) {
     if (grades.empty()) return 0;

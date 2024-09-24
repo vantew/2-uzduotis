@@ -9,28 +9,47 @@ int main() {
     int n;
     cin >> n;
 
-    cout << "Do you know the number of homework assignments per student? (y/n):" << endl;
     char hw;
-    cin >> hw;
-    if (hw == 'y' || hw == 'Y') {
-        cout << "Enter the number of assignments: " <<endl;
-        int hwCount;
-        cin >> hwCount;
 
-        cout << "Input student's data" << endl;
-        for (int i = 0; i < n; i++) {
-            input(Temp, hwCount);
-            Vec1.push_back(Temp);
-            clean(Temp);
+while (true) {
+        cout << "Do you know the number of homework assignments per student? (y/n):" << endl;
+        cin >> hw;
+
+        if (hw == 'y' || hw == 'Y') {
+            cout << "Enter the number of assignments: " << endl;
+            int hwCount;
+            cin >> hwCount;
+
+            cout << "Do you want to generate random grades? (y/n): " <<endl;
+            char random;
+            cin >> random;
+
+            if (random == 'y' || random == 'Y') {
+                for (int i = 0; i < n; i++) {
+                    randomgrades(Temp, hwCount); // Generate random grades
+                    Vec1.push_back(Temp); // Store in vector
+                    clean(Temp); // Clean the temporary structure
+                }
+            break; // Exit the while loop after processing random grades
+            }
+            else {
+                for (int i = 0; i < n; i++) {
+                    input(Temp, hwCount);
+                    Vec1.push_back(Temp);
+                    clean(Temp);
+                }
+            break; // Exit the loop after processing homework data
+            }
         }
-    }
-    else if (hw == 'n' || hw == 'N') {
-        cout << "Input student's data" << endl;
-        for (int i = 0; i < n; i++) {
-            inputgrades(Temp);
-            Vec1.push_back(Temp);
-            clean(Temp);
+        else if (hw == 'n' || hw == 'N') {
+            for (int i = 0; i < n; i++) {
+                inputgrades(Temp);
+                Vec1.push_back(Temp);
+                clean(Temp);
+            }
+            break; // Exit the loop after processing student data
         }
+        else {}
     }
 
 int option;
@@ -78,7 +97,8 @@ do {
         cout << "Invalid option! Please try again." << endl;
     }
 
-} while (option != 1 && option != 2); // Continue looping until a valid option is chosen
+}
+while (option != 1 && option != 2); // Continue looping until a valid option is chosen
 
-    system("pause");
+system("pause");
 }
