@@ -43,27 +43,28 @@ int main() {
         for (const Stud &student : Vec1) {
             outputfile(outfile, student);
         }
-
+        cout << "Do you want to view the statistics? (y/n)" << endl;
+        char filteroption;
+        cin >> filteroption;
+        if (filteroption == 'y' || filteroption == 'Y') {
         vector<Stud> below5;
         vector<Stud> above5;
-        filefiltering(Vec1, below5, above5);
+        filterbelow5(Vec1, below5);
+        filterabove5(Vec1, above5);
 
         ofstream belowfile("below5output.txt"); // studentai su below5 isrenkami i output faila
         printHeaderfile(belowfile);
-        for (const Stud &student : below5) {
-            outputfile(belowfile, student);
-        }
+        outputbelow5file(belowfile, below5);
 
         ofstream abovefile("above5output.txt"); // studentai su below5 isrenkami i output faila
         printHeaderfile(abovefile);
-        for (const Stud &student : above5) {
-            outputfile(abovefile, student);
-        }
+        outputabove5file(abovefile, above5);
 
-        file.close();
-        outfile.close();
         belowfile.close();
         abovefile.close();
+        }
+        file.close();
+        outfile.close();
         cout << "Printed to output file." << endl;
         system("pause");
         return 0;

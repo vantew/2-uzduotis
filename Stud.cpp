@@ -391,4 +391,25 @@ void filefiltering(const vector<Stud>& allstudents, vector<Stud>& below5, vector
     }
 }
 
+void outputbelow5file(ofstream& belowfile, const vector<Stud>& below5) {
+    auto start = std::chrono::high_resolution_clock::now();
+    for (const Stud &student : below5) {
+        outputfile(belowfile, student);
+    }
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> elapsed = end - start;
+
+    std::cout << "Total time elapsed for printing students with below 5 average: " << elapsed.count() << " seconds" << std::endl;
+}
+
+void outputabove5file(ofstream& abovefile, const vector<Stud>& above5) {
+    auto start = std::chrono::high_resolution_clock::now();
+    for (const Stud &student : above5) {
+        outputfile(abovefile, student);
+    }
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> elapsed = end - start;
+
+    std::cout << "Total time elapsed for printing students with above 5 average: " << elapsed.count() << " seconds" << std::endl;
+}
 
