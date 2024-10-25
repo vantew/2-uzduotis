@@ -273,10 +273,10 @@ void filterandsave(char filteroption, const string& studentinput, const string& 
     readfile(studentinput, allstudents);
 
     if (filteroption == '1') {
-        filterbelow5(allstudents, filteredstudents);
+        filterabove5(allstudents, filteredstudents);
         savetofile(above5file, filteredstudents);
     } else if (filteroption == '2') {
-        filterabove5(allstudents, filteredstudents);
+        filterbelow5(allstudents, filteredstudents);
         savetofile(below5file, filteredstudents);
     } else {
         cout << "Invalid option." << endl;
@@ -320,7 +320,7 @@ void filterbelow5(const vector<Stud> &allstudents, vector<Stud> &below5) { // is
     below5.clear();
 
     for (const auto &student : allstudents) {
-        if (student.avg >= 5.0) { ///////////////////////
+        if (student.avg < 5.0) { ///////////////////////
             below5.push_back(student);
         }
     }
@@ -335,7 +335,7 @@ void filterabove5(const vector<Stud> &allstudents, vector<Stud> &above5) { // is
 
     above5.clear();
     for (const auto &student : allstudents) {
-        if (student.avg < 5.0) {
+        if (student.avg >= 5.0) {
             above5.push_back(student);
         }
     }
@@ -379,16 +379,6 @@ void filetimer(const std::string &filename, int size, int numHW, std::vector<Stu
 
     std::cout << "Total time elapsed for " << size << " students: " << elapsed.count() << " seconds" << std::endl;
     std::cout << std::endl;
-}
-
-void filefiltering(const vector<Stud>& allstudents, vector<Stud>& below5, vector<Stud>& above5) {
-    for (const auto& student : allstudents) {
-        if (student.avg < 5.0) {
-            below5.push_back(student);
-        } else {
-            above5.push_back(student);
-        }
-    }
 }
 
 void outputbelow5file(ofstream& belowfile, const vector<Stud>& below5) {
@@ -456,7 +446,7 @@ void filterbelow5List(const list<Stud>& allstudents, list<Stud>& below5) {
     auto start = std::chrono::high_resolution_clock::now();
     below5.clear();
     for (const auto& student : allstudents) {
-        if (student.avg >= 5.0) {
+        if (student.avg < 5.0) {
             below5.push_back(student);
         }
     }
@@ -469,7 +459,7 @@ void filterabove5List(const list<Stud>& allstudents, list<Stud>& above5) {
     auto start = std::chrono::high_resolution_clock::now();
     above5.clear();
     for (const auto& student : allstudents) {
-        if (student.avg < 5.0) {
+        if (student.avg >= 5.0) {
             above5.push_back(student);
         }
     }
@@ -533,11 +523,11 @@ void filetimerList(const string &filename, int size, int numHW, list<Stud> &List
     readfileList(filename, List1);
 
     if (filteroption == '1') {
-        filterbelow5List(List1, filteredstudents);
-        savetofileList("nuskriaustukai_" + std::to_string(size) + ".txt", filteredstudents);
-    } else if (filteroption == '2') {
         filterabove5List(List1, filteredstudents);
         savetofileList("kietakai_" + std::to_string(size) + ".txt", filteredstudents);
+    } else if (filteroption == '2') {
+        filterbelow5List(List1, filteredstudents);
+        savetofileList("nuskriaustukai_" + std::to_string(size) + ".txt", filteredstudents);
     } else {
         cout << "Invalid option." << endl;
         exit(1);

@@ -33,7 +33,6 @@ void filterbelow5(const vector<Stud> &allstudents, vector<Stud> &below5);
 void filterabove5(const vector<Stud> &allstudents, vector<Stud> &above5);
 void savetofile(const string &filename, const vector<Stud> &students);
 void filetimer(const std::string &filename, int size, int numHW, std::vector<Stud> &Vec1, int filteroption);
-void filefiltering(const vector<Stud>& allstudents, vector<Stud>& below5, vector<Stud>& above5);
 void outputbelow5file(ofstream& belowfile, const vector<Stud>& below5);
 void outputabove5file(ofstream& belowfile, const vector<Stud>& above5);
 
