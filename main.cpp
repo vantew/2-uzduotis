@@ -95,6 +95,11 @@ int main() {
 
                 char container;
                 cout << "Would you like to view the statistics with vector or list? (v/l)" << endl;
+
+
+
+
+                ///!!!!!!!!!
                 cin >> container;
                 if (container == 'v' || container == 'v') {
                     filetimer("studentai_1000.txt", 1000, numHW, Vec1, filteroption);
