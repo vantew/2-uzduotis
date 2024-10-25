@@ -3,6 +3,7 @@
 
 int main() {
     vector<Stud> Vec1;
+    list<Stud> List1;
 
     Stud Temp;
 
@@ -78,31 +79,41 @@ int main() {
         char generatefiles;
         cout << "Do you want to generate files for v0.2? (y/n): ";
 //////////////////////////////////////////////////////////////////////
-///////////////// V0.2
+///////////////// V0.2 / V0.3
 //////////////////////////////////////////////////////////////////////
         cin >> generatefiles;
         if (generatefiles == 'y' || generatefiles == 'Y') {
+                 int numHW;
+                cout << "Enter the number of homework grades: ";
+                cin >> numHW;
+                cout << endl;
 
-            int numHW;
-            cout << "Enter the number of homework grades: ";
-            cin >> numHW;
-            cout << endl;
+                char filteroption;
+                cout << "Enter filter option ('1' to view students whose average is above 5, '2' for below 5): ";
+                cin >> filteroption;
+                cout << endl;
 
-            char filteroption;
-            cout << "Enter filter option ('1' to view students whose average is above 5, '2' for below 5): ";
-            cin >> filteroption;
-            cout << endl;
-
-            filetimer("studentai_1000.txt", 1000, numHW, Vec1, filteroption);
-            filetimer("studentai_10000.txt", 10000, numHW, Vec1, filteroption);
-            filetimer("studentai_100000.txt", 100000, numHW, Vec1, filteroption);
-            filetimer("studentai_1000000.txt", 1000000, numHW, Vec1, filteroption);
-            filetimer("studentai_10000000.txt", 10000000, numHW, Vec1, filteroption);
+                char container;
+                cout << "Would you like to view the statistics with vector or list? (v/l)" << endl;
+                cin >> container;
+                if (container == 'v' || container == 'v') {
+                    filetimer("studentai_1000.txt", 1000, numHW, Vec1, filteroption);
+                    filetimer("studentai_10000.txt", 10000, numHW, Vec1, filteroption);
+                    filetimer("studentai_100000.txt", 100000, numHW, Vec1, filteroption);
+                    filetimer("studentai_1000000.txt", 1000000, numHW, Vec1, filteroption);
+                    filetimer("studentai_10000000.txt", 10000000, numHW, Vec1, filteroption);
+                } else {
+                    filetimerList("studentai_1000_list.txt", 1000, numHW, List1, filteroption);
+                    filetimerList("studentai_10000_list.txt", 10000, numHW, List1, filteroption);
+                    filetimerList("studentai_100000_list.txt", 100000, numHW, List1, filteroption);
+                    filetimerList("studentai_1000000_list.txt", 1000000, numHW, List1, filteroption);
+                    filetimerList("studentai_10000000_list.txt", 10000000, numHW, List1, filteroption);
+                }
 
         system("pause");
         return 0;
 //////////////////////////////////////////////////////////////////////
-///////////////// V0.2
+///////////////// V0.2 / V0.3
 //////////////////////////////////////////////////////////////////////
         } else {
             int n;

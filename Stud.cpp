@@ -413,3 +413,122 @@ void outputabove5file(ofstream& abovefile, const vector<Stud>& above5) {
     std::cout << "Total time elapsed for printing students with above 5 average: " << elapsed.count() << " seconds" << std::endl;
 }
 
+//////////////////////////////////////////////////////////////////////
+///////////////// V0.3
+//////////////////////////////////////////////////////////////////////
+void filegenerationList(const string& filename, int numEntries, int numHW, list<Stud>& List1) {
+    ofstream file(filename);
+    auto start = std::chrono::high_resolution_clock::now();
+
+    if (!file) {
+        cerr << "Failed to open file: " << filename << endl;
+        return;
+    }
+
+    srand(static_cast<unsigned int>(time(0)));
+
+    file << fixed << left << setw(15) << "Vardas"
+         << setw(15) << "Pavarde"
+         << setw(10) << "Average" << endl;
+
+    for (int j = 1; j <= numEntries; j++) {
+        Stud Temp;
+        Temp.name = "Vardas" + to_string(j);
+        Temp.surname = "Pavarde" + to_string(j);
+        file << fixed << left << setw(15) << Temp.name << setw(15) << Temp.surname;
+
+        for (int i = 0; i < numHW; i++) {
+            Temp.HW.push_back(rand() % 10 + 1);
+        }
+
+        Temp.exam = rand() % 10 + 1;
+        Temp.avg = (Temp.exam + accumulate(Temp.HW.begin(), Temp.HW.end(), 0.00)) / (numHW + 1);
+        file << fixed << left << setprecision(2) << setw(10) << Temp.avg << endl;
+
+        List1.push_back(Temp);
+    }
+}
+
+void filterbelow5List(const list<Stud>& allstudents, list<Stud>& below5) {
+    auto start = std::chrono::high_resolution_clock::now();
+    below5.clear();
+    for (const auto& student : allstudents) {
+        if (student.avg < 5.0) {
+            below5.push_back(student);
+        }
+    }
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> elapsed = end - start;
+    cout << "Time to filter students below 5 average (list): " << elapsed.count() << " seconds" << endl;
+}
+
+void readfileList(const string &inputfile, list<Stud> &allstudents) {
+    auto start = std::chrono::high_resolution_clock::now();
+    ifstream file(inputfile);
+    if (!file.is_open()) {
+        cerr << "Failed to open input file: " << inputfile << endl;
+        return;
+    }
+
+    string line;
+    getline(file, line); // skip header
+    allstudents.clear();
+
+    while (getline(file, line)) {
+        istringstream inputline(line);
+        Stud Temp;
+        if (inputline >> Temp.name >> Temp.surname >> Temp.avg) {
+            allstudents.push_back(Temp);
+        }
+    }
+
+    file.close();
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> elapsed = end - start;
+    cout << "Time it takes to read all students from the file (list): " << elapsed.count() << " seconds" << endl;
+}
+
+void savetofileList(const string &filename, const list<Stud> &students) {
+    auto start = std::chrono::high_resolution_clock::now();
+    ofstream file(filename);
+    if (!file.is_open()) {
+        cerr << "Failed to open output file: " << filename << endl;
+        return;
+    }
+
+    for (const auto &student : students) {
+        file << fixed << left << setw(20) << student.name
+             << setw(20) << student.surname
+             << setw(10) << setprecision(2) << student.avg << endl;
+    }
+
+    file.close();
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> elapsed = end - start;
+    cout << "Time elapsed to print filtered students to file " << filename << ": " << elapsed.count() << " seconds" << endl;
+}
+
+void filetimerList(const string &filename, int size, int numHW, list<Stud> &List1, char filteroption) {
+    auto start = std::chrono::high_resolution_clock::now();
+
+    filegenerationList(filename, size, numHW, List1);
+
+    list<Stud> filteredstudents;
+    readfileList(filename, List1);
+
+    if (filteroption == '1') {
+        filterbelow5List(List1, filteredstudents);
+        savetofileList("nuskriaustukai_" + std::to_string(size) + ".txt", filteredstudents);
+    } else if (filteroption == '2') {
+        filterbelow5List(List1, filteredstudents);
+        savetofileList("kietakai_" + std::to_string(size) + ".txt", filteredstudents);
+    } else {
+        cout << "Invalid option." << endl;
+        exit(1);
+    }
+
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> elapsed = end - start;
+    std::cout << "Total time elapsed for " << size << " students (list): " << elapsed.count() << " seconds" << std::endl;
+    std::cout << std::endl;
+}

@@ -11,7 +11,9 @@
 #include <sstream>
 #include <numeric>
 #include <chrono>
+#include <list>
 
+using std::list;
 using std::endl;
 using std::cout;
 using std::cin;

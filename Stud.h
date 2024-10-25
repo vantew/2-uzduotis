@@ -37,4 +37,10 @@ void filefiltering(const vector<Stud>& allstudents, vector<Stud>& below5, vector
 void outputbelow5file(ofstream& belowfile, const vector<Stud>& below5);
 void outputabove5file(ofstream& belowfile, const vector<Stud>& above5);
 
+void filegenerationList(const string& filename, int numEntries, int numHW, list<Stud>& List1);
+void filterbelow5List(const list<Stud>& allstudents, list<Stud>& below5);
+void readfileList(const string &inputfile, list<Stud> &allstudents);
+void savetofileList(const string &filename, const list<Stud> &students);
+void filetimerList(const string &filename, int size, int numHW, list<Stud> &List1, char filteroption);
+
 #endif // STUD_H_INCLUDED
