@@ -234,7 +234,7 @@ void filegeneration(const string& filename, int numEntries, int numHW, vector<St
         return;
     }
 
- //   srand(static_cast<unsigned int>(time(0))); // kaskart generatina skirtingus grades
+    srand(static_cast<unsigned int>(time(0))); // kaskart generatina skirtingus grades
 
     file << fixed << left << setw(15) << "Vardas"
                           << setw(15) << "Pavarde"
@@ -418,7 +418,7 @@ void filegenerationList(const string& filename, int numEntries, int numHW, list<
         return;
     }
 
-  //  srand(static_cast<unsigned int>(time(0)));
+    srand(static_cast<unsigned int>(time(0)));
 
     file << fixed << left << setw(15) << "Vardas"
          << setw(15) << "Pavarde"
@@ -543,6 +543,45 @@ void filetimerList(const string &filename, int size, int numHW, list<Stud> &List
 
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> elapsed = end - start;
-    std::cout << "LIST Total time elapsed for " << size << " students: " << elapsed.count() << " seconds" << std::endl;
-    std::cout << std::endl;
+    cout << "LIST Total time elapsed for " << size << " students: " << elapsed.count() << " seconds" << endl;
+}
+
+void iteratevector(vector<Stud>& Vec1, vector<Stud>& below5) {
+    auto start = std::chrono::high_resolution_clock::now();
+    for (auto it = Vec1.begin(); it != Vec1.end();) {
+        if (it->avg < 5) {
+            below5.push_back(*it);
+            it = Vec1.erase(it);
+        } else {
+            ++it;
+          }
+    }
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> elapsed = end - start;
+    cout << "VECTOR Total time elapsed for iterating students: " << elapsed.count() << " seconds" << endl;
+}
+
+void iteratelist(list<Stud>& List1, list<Stud>& below5list) {
+    auto start = std::chrono::high_resolution_clock::now();
+    for (auto it = List1.begin(); it != List1.end();) {
+        if (it->avg < 5) {
+            below5list.push_back(*it);
+            it = List1.erase(it);
+        } else {
+            ++it;
+        }
+    }
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> elapsed = end - start;
+    cout << "LIST Total time elapsed for iterating students: " << elapsed.count() << " seconds" << endl;
+}
+
+void clearFile(const std::string& filename) {
+    std::ofstream file(filename, std::ios::trunc); // Open file with truncation to clear contents
+    if (file.is_open()) {
+        // File is now cleared
+        file.close(); // Close the file after clearing
+    } else {
+        std::cout << "Failed to open the file: " << filename << std::endl;
+    }
 }

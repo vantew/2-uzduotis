@@ -43,4 +43,8 @@ void readfileList(const string &inputfile, list<Stud> &allstudents);
 void savetofileList(const string &filename, const list<Stud> &students);
 void filetimerList(const string &filename, int size, int numHW, list<Stud> &List1, char filteroption);
 
+void iteratevector(vector<Stud>& Vec1, vector<Stud>& below5);
+void iteratelist(list<Stud>& List1, list<Stud>& below5list);
+void clearFile(const std::string& filename);
+
 #endif // STUD_H_INCLUDED

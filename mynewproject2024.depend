@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1730833806 source:c:\users\vlue1\desktop\mynewproject2024\main.cpp
+1730839911 source:c:\users\vlue1\desktop\mynewproject2024\main.cpp
 	"Mylib.h"
 	"Stud.h"
 
@@ -16,9 +16,9 @@
 	<chrono>
 	<list>
 
-1729880700 c:\users\vlue1\desktop\mynewproject2024\stud.h
+1730840268 c:\users\vlue1\desktop\mynewproject2024\stud.h
 	"Mylib.h"
 
-1730819302 source:c:\users\vlue1\desktop\mynewproject2024\stud.cpp
+1730840252 source:c:\users\vlue1\desktop\mynewproject2024\stud.cpp
 	"Stud.h"
 

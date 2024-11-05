@@ -4,6 +4,10 @@
 int main() {
     vector<Stud> Vec1;
     list<Stud> List1;
+        vector<Stud> below5;
+        vector<Stud> above5;
+        list<Stud> below5list;
+        list<Stud> above5list;
 
     Stud Temp;
 
@@ -44,17 +48,15 @@ int main() {
         cin >> container;
         cout << endl;
 
-        vector<Stud> below5;
-        vector<Stud> above5;
-        list<Stud> below5list;
-        list<Stud> above5list;
-        ofstream belowfile("below5output.txt");
-        ofstream abovefile("above5output.txt");
+//        vector<Stud> below5;
+//        vector<Stud> above5;
+//        list<Stud> below5list;
+//        list<Stud> above5list;
 
         if (filteroption == '1') {
             if (container == 'v') {
                 filterabove5(Vec1, above5);
-                outputabove5file(abovefile, above5);
+                savetofile("above5output.txt", above5);
             }
             else if (container == 'l') {
                 filterabove5List(List1, above5list);
@@ -62,7 +64,7 @@ int main() {
             }
             else if (container == 'b') {
                 filterabove5(Vec1, above5);
-                outputabove5file(abovefile, above5);
+                savetofile("above5output.txt", above5);
 
                 filterabove5List(List1, above5list);
                 savetofileList("above5output.txt", above5list);
@@ -72,7 +74,7 @@ int main() {
         else if (filteroption == '2') {
             if (container == 'v') {
                 filterbelow5(Vec1, below5);
-                outputbelow5file(belowfile, below5);
+                savetofile("below5output.txt", below5);
             }
             else if (container == 'l') {
                 filterbelow5List(List1, below5list);
@@ -80,7 +82,7 @@ int main() {
             }
             else if (container == 'b') {
                 filterbelow5(Vec1, below5);
-                outputbelow5file(belowfile, below5);
+                savetofile("below5output.txt", below5);
 
                 filterbelow5List(List1, below5list);
                 savetofileList("below5output.txt", below5list);
@@ -91,8 +93,8 @@ int main() {
             if (container == 'v') {
                 filterbelow5(Vec1, below5);
                 filterabove5(Vec1, above5);
-                outputbelow5file(belowfile, below5);
-                outputabove5file(abovefile, above5);
+                savetofile("below5output.txt", below5);
+                savetofile("above5output.txt", above5);
             }
             else if (container == 'l') {
                 filterbelow5List(List1, below5list);
@@ -103,8 +105,8 @@ int main() {
             else if (container == 'b') {
                 filterbelow5(Vec1, below5);
                 filterabove5(Vec1, above5);
-                outputbelow5file(belowfile, below5);
-                outputabove5file(abovefile, above5);
+                savetofile("below5output.txt", below5);
+                savetofile("above5output.txt", above5);
 
                 filterbelow5List(List1, below5list);
                 filterabove5List(List1, above5list);
@@ -114,8 +116,6 @@ int main() {
 
         }
 
-        belowfile.close();
-        abovefile.close();
         file.close();
 
         system("pause");
@@ -127,27 +127,31 @@ int main() {
         return 1;
     }
 } else if (fileoption == 'n' || fileoption == 'N') {
+//////////////////////////////////////////////////////////////////////
+///////////////// 1 strategija
+//////////////////////////////////////////////////////////////////////
         char generatefiles;
-        cout << "Do you want to generate files? (y/n): ";
-//////////////////////////////////////////////////////////////////////
-///////////////// V0.2 / V0.3
-//////////////////////////////////////////////////////////////////////
+        cout << "Do you want to generate files? (y/n): " << endl;
         cin >> generatefiles;
         if (generatefiles == 'y' || generatefiles == 'Y') {
-                 int numHW;
-                cout << "Enter the number of homework grades: ";
-                cin >> numHW;
-                cout << endl;
+            cout << "Enter the number of homework grades: ";
+            int numHW;
+            cin >> numHW;
+            cout << endl;
 
-                char filteroption;
-                cout << "Enter filter option ('1' to view students whose average is above 5, '2' for below 5, '3' for both): ";
-                cin >> filteroption;
-                cout << endl;
+            char filteroption;
+            cout << "Enter filter option ('1' to view students whose average is above 5, '2' for below 5, '3' for both): ";
+            cin >> filteroption;
+            cout << endl;
 
-                char container;
-                cout << "Would you like to view the statistics with vector or list, or both? (v/l/b)" << endl;
-                cin >> container;
+            char container;
+            cout << "Would you like to view the statistics with vector or list, or both? (v/l/b)" << endl;
+            cin >> container;
 
+            char strategy;
+            cout << "Which strategy do you want to use (1, 2, 3)?" << endl;
+            cin >> strategy;
+            if (strategy == '1') {
                 if (container == 'V' || container == 'v') {
                     filetimer("studentai_1000.txt", 1000, numHW, Vec1, filteroption);
                     filetimer("studentai_10000.txt", 10000, numHW, Vec1, filteroption);
@@ -162,7 +166,7 @@ int main() {
                     filetimerList("studentai_10000000.txt", 10000000, numHW, List1, filteroption);
                 } else if (container == 'B' || container == 'b') {
                     filetimer("studentai_1000.txt", 1000, numHW, Vec1, filteroption);
-                    filetimerList("studentai_1000_list.txt", 1000, numHW, List1, filteroption);
+                    filetimerList("studentai_1000.txt", 1000, numHW, List1, filteroption);
 
                     filetimer("studentai_10000.txt", 10000, numHW, Vec1, filteroption);
                     filetimerList("studentai_10000.txt", 10000, numHW, List1, filteroption);
@@ -176,12 +180,21 @@ int main() {
                     filetimer("studentai_10000000.txt", 10000000, numHW, Vec1, filteroption);
                     filetimerList("studentai_10000000.txt", 10000000, numHW, List1, filteroption);
                 }
+        }
+            if (strategy == '2') {
+                filegeneration("studentai_1000.txt", 1000, numHW, Vec1);
+                iteratevector(Vec1, below5);
+                savetofile("below5output.txt", below5);
+                clearFile("studentai_1000.txt");
+                clearFile("below5output.txt");
 
-        system("pause");
-        return 0;
+             //   filegenerationList("studentai_1000.txt", 1000, numHW, List1);
+               // iteratelist(List1, below5list);
+                //savetofileList("below5output.txt", below5list);
+            }
         }
 //////////////////////////////////////////////////////////////////////
-///////////////// V0.2 / V0.3
+/////////////////  strattegija
 //////////////////////////////////////////////////////////////////////
  else {
     int n;
@@ -262,59 +275,65 @@ int main() {
                 cin >> container;
                 cout << endl;
 
-                vector<Stud> below5;
-                vector<Stud> above5;
-                list<Stud> below5list;
-                list<Stud> above5list;
-                ofstream belowfile("below5output.txt");
-                ofstream abovefile("above5output.txt");
+//                vector<Stud> below5;
+//                vector<Stud> above5;
+//                list<Stud> below5list;
+//                list<Stud> above5list;
 
                 if (filteroption == '1') {
                     if (container == 'v') {
                         filterabove5(Vec1, above5);
-                        outputabove5file(abovefile, above5);
-                    } else if (container == 'l') {
+                        savetofile("above5output.txt", above5);
+                    }
+                    else if (container == 'l') {
                         filterabove5List(List1, above5list);
                         savetofileList("above5output.txt", above5list);
-                    } else if (container == 'b') {
+                    }
+                    else if (container == 'b') {
                         filterabove5(Vec1, above5);
-                        outputabove5file(abovefile, above5);
+                        savetofile("above5output.txt", above5);
 
                         filterabove5List(List1, above5list);
                         savetofileList("above5output.txt", above5list);
                     }
 
-                } else if (filteroption == '2') {
+                }
+                else if (filteroption == '2') {
                     if (container == 'v') {
                         filterbelow5(Vec1, below5);
-                        outputbelow5file(belowfile, below5);
-                    } else if (container == 'l') {
+                        savetofile("below5output.txt", below5);
+                    }
+                    else if (container == 'l') {
                         filterbelow5List(List1, below5list);
                         savetofileList("below5output.txt", below5list);
-                    } else if (container == 'b') {
+                    }
+                    else if (container == 'b') {
                         filterbelow5(Vec1, below5);
-                        outputbelow5file(belowfile, below5);
+                        savetofile("below5output.txt", below5);
 
                         filterbelow5List(List1, below5list);
                         savetofileList("below5output.txt", below5list);
                     }
 
-                } else if (filteroption == '3') {
+                }
+                else if (filteroption == '3') {
                     if (container == 'v') {
                         filterbelow5(Vec1, below5);
                         filterabove5(Vec1, above5);
-                        outputbelow5file(belowfile, below5);
-                        outputabove5file(abovefile, above5);
-                    } else if (container == 'l') {
+                        savetofile("below5output.txt", below5);
+                        savetofile("above5output.txt", above5);
+                    }
+                    else if (container == 'l') {
                         filterbelow5List(List1, below5list);
                         filterabove5List(List1, above5list);
                         savetofileList("below5output.txt", below5list);
                         savetofileList("above5output.txt", above5list);
-                    } else if (container == 'b') {
+                    }
+                    else if (container == 'b') {
                         filterbelow5(Vec1, below5);
                         filterabove5(Vec1, above5);
-                        outputbelow5file(belowfile, below5);
-                        outputabove5file(abovefile, above5);
+                        savetofile("below5output.txt", below5);
+                        savetofile("above5output.txt", above5);
 
                         filterbelow5List(List1, below5list);
                         filterabove5List(List1, above5list);
@@ -488,6 +507,7 @@ int main() {
     }
 
 }
+system("pause");
 
  int option;
     do {
