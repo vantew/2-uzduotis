@@ -6,7 +6,7 @@ void input(Stud &Lok, int hwCount) {
 
     double hwSum = 0;
     int hw;
-
+    cout << hwCount << endl;
     cout << "Enter the homework grades for " << "\033[1;3m" << Lok.name << " " << Lok.surname << "\033[0m: " << endl;
     for (int i = 0; i < hwCount; i++) {
             while (true) {
@@ -17,6 +17,7 @@ void input(Stud &Lok, int hwCount) {
             else {
                 hwSum += hw;
                 Lok.HW.push_back(hw);
+                break;
                 }
             }
     }
@@ -35,11 +36,8 @@ void input(Stud &Lok, int hwCount) {
     }
 
     Lok.avg = (hwSum + Lok.exam) / (hwCount + 1);
-    Lok.HW.push_back(Lok.exam); // ipushinam Lok.exam i Vec1 vektoriu del medianos skaiciavimo
-    Lok.med = calculateMedian(Lok.HW);
 
 }
-
 
 void inputgrades(Stud &Lok) {
     cout << "Input student's name and surname: " << endl;
@@ -276,6 +274,11 @@ void filterandsave(char filteroption, const string& studentinput, const string& 
         filterabove5(allstudents, filteredstudents);
         savetofile(above5file, filteredstudents);
     } else if (filteroption == '2') {
+        filterbelow5(allstudents, filteredstudents);
+        savetofile(below5file, filteredstudents);
+    } else if (filteroption == '3') {
+        filterabove5(allstudents, filteredstudents);
+        savetofile(above5file, filteredstudents);
         filterbelow5(allstudents, filteredstudents);
         savetofile(below5file, filteredstudents);
     } else {
@@ -526,6 +529,11 @@ void filetimerList(const string &filename, int size, int numHW, list<Stud> &List
         filterabove5List(List1, filteredstudents);
         savetofileList("kietakai_" + std::to_string(size) + ".txt", filteredstudents);
     } else if (filteroption == '2') {
+        filterbelow5List(List1, filteredstudents);
+        savetofileList("nuskriaustukai_" + std::to_string(size) + ".txt", filteredstudents);
+    } else if (filteroption == '3') {
+        filterabove5List(List1, filteredstudents);
+        savetofileList("kietakai_" + std::to_string(size) + ".txt", filteredstudents);
         filterbelow5List(List1, filteredstudents);
         savetofileList("nuskriaustukai_" + std::to_string(size) + ".txt", filteredstudents);
     } else {
