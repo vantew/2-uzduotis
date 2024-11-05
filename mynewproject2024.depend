@@ -1,9 +1,9 @@
 # depslib dependency file v1.0
-1729880183 source:c:\users\vlue1\desktop\mynewproject2024\main.cpp
+1730812409 source:c:\users\vlue1\desktop\mynewproject2024\main.cpp
 	"Mylib.h"
 	"Stud.h"
 
-1729878088 c:\users\vlue1\desktop\mynewproject2024\mylib.h
+1729874488 c:\users\vlue1\desktop\mynewproject2024\mylib.h
 	<iostream>
 	<string>
 	<vector>
@@ -16,9 +16,9 @@
 	<chrono>
 	<list>
 
-1729884300 c:\users\vlue1\desktop\mynewproject2024\stud.h
+1729880700 c:\users\vlue1\desktop\mynewproject2024\stud.h
 	"Mylib.h"
 
-1729884538 source:c:\users\vlue1\desktop\mynewproject2024\stud.cpp
+1730812174 source:c:\users\vlue1\desktop\mynewproject2024\stud.cpp
 	"Stud.h"
 

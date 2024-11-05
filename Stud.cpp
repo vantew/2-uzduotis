@@ -263,7 +263,7 @@ void filegeneration(const string& filename, int numEntries, int numHW, vector<St
 
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> elapsed = end - start;
-    cout << "File with " << numEntries << " entries generated in: " << elapsed.count() << " seconds" << endl;
+    cout << "VECTOR File with " << numEntries << " entries generated in: " << elapsed.count() << " seconds" << endl;
 }
 
 void filterandsave(char filteroption, const string& studentinput, const string& below5file, const string& above5file) {
@@ -311,7 +311,7 @@ void readfile(const string &inputfile, vector<Stud> &allstudents) { // nuskaitom
 
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> elapsed = end - start;
-    cout << "Time it takes to read all students from the file: " << elapsed.count() << " seconds" << endl;
+    cout << "VECTOR Time it takes to read all students from the file: " << elapsed.count() << " seconds" << endl;
 }
 
 void filterbelow5(const vector<Stud> &allstudents, vector<Stud> &below5) { // isfiltruoja studentus, kuriu vidurkis < 5
@@ -327,7 +327,7 @@ void filterbelow5(const vector<Stud> &allstudents, vector<Stud> &below5) { // is
 
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> elapsed = end - start;
-    cout << "Time it takes to filter students below 5 average: " << elapsed.count() << " seconds" << endl;
+    cout << "VECTOR Time it takes to filter students below 5 average: " << elapsed.count() << " seconds" << endl;
 }
 
 void filterabove5(const vector<Stud> &allstudents, vector<Stud> &above5) { // isfiltruoja studentus, kuriu vidurkis >= 5
@@ -342,7 +342,7 @@ void filterabove5(const vector<Stud> &allstudents, vector<Stud> &above5) { // is
 
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> elapsed = end - start;
-    cout << "Time it takes to filter students above or equal to 5 average: " << elapsed.count() << " seconds" << endl;
+    cout << "VECTOR Time it takes to filter students above or equal to 5 average: " << elapsed.count() << " seconds" << endl;
 }
 
 void savetofile(const string &filename, const vector<Stud> &students) { // issaugo isfiltruotus studentus i failus
@@ -365,7 +365,7 @@ void savetofile(const string &filename, const vector<Stud> &students) { // issau
 
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> elapsed = end - start;
-    cout << "Time elapsed to print filtered students to file " << filename << ": " << elapsed.count() << " seconds" << endl;
+    cout << "VECTOR Time elapsed to print filtered students to file " << filename << ": " << elapsed.count() << " seconds" << endl;
 }
 
 void filetimer(const std::string &filename, int size, int numHW, std::vector<Stud> &Vec1, int filteroption) {
@@ -377,7 +377,7 @@ void filetimer(const std::string &filename, int size, int numHW, std::vector<Stu
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> elapsed = end - start;
 
-    std::cout << "Total time elapsed for " << size << " students: " << elapsed.count() << " seconds" << std::endl;
+    std::cout << "VECTOR Total time elapsed for " << size << " students: " << elapsed.count() << " seconds" << std::endl;
     std::cout << std::endl;
 }
 
@@ -389,7 +389,7 @@ void outputbelow5file(ofstream& belowfile, const vector<Stud>& below5) {
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> elapsed = end - start;
 
-    std::cout << "Total time elapsed for printing students with below 5 average: " << elapsed.count() << " seconds" << std::endl;
+    std::cout << "VECTOR Total time elapsed for printing students with below 5 average: " << elapsed.count() << " seconds" << std::endl;
 }
 
 void outputabove5file(ofstream& abovefile, const vector<Stud>& above5) {
@@ -400,7 +400,7 @@ void outputabove5file(ofstream& abovefile, const vector<Stud>& above5) {
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> elapsed = end - start;
 
-    std::cout << "Total time elapsed for printing students with above 5 average: " << elapsed.count() << " seconds" << std::endl;
+    std::cout << "VECTOR Total time elapsed for printing students with above 5 average: " << elapsed.count() << " seconds" << std::endl;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -439,7 +439,7 @@ void filegenerationList(const string& filename, int numEntries, int numHW, list<
     }
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> elapsed = end - start;
-    cout << "File with " << numEntries << " entries generated in: " << elapsed.count() << " seconds" << endl;
+    cout << "LIST File with " << numEntries << " entries generated in: " << elapsed.count() << " seconds" << endl;
 }
 
 void filterbelow5List(const list<Stud>& allstudents, list<Stud>& below5) {
@@ -452,7 +452,7 @@ void filterbelow5List(const list<Stud>& allstudents, list<Stud>& below5) {
     }
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> elapsed = end - start;
-    cout << "Time to filter students below 5 average : " << elapsed.count() << " seconds" << endl;
+    cout << "LIST Time to filter students below 5 average : " << elapsed.count() << " seconds" << endl;
 }
 
 void filterabove5List(const list<Stud>& allstudents, list<Stud>& above5) {
@@ -465,7 +465,7 @@ void filterabove5List(const list<Stud>& allstudents, list<Stud>& above5) {
     }
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> elapsed = end - start;
-    cout << "Time to filter students above 5 average : " << elapsed.count() << " seconds" << endl;
+    cout << "LIST Time to filter students above 5 average : " << elapsed.count() << " seconds" << endl;
 }
 
 void readfileList(const string &inputfile, list<Stud> &allstudents) {
@@ -491,7 +491,7 @@ void readfileList(const string &inputfile, list<Stud> &allstudents) {
     file.close();
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> elapsed = end - start;
-    cout << "Time it takes to read all students from the file: " << elapsed.count() << " seconds" << endl;
+    cout << "LIST Time it takes to read all students from the file: " << elapsed.count() << " seconds" << endl;
 }
 
 void savetofileList(const string &filename, const list<Stud> &students) {
@@ -511,7 +511,7 @@ void savetofileList(const string &filename, const list<Stud> &students) {
     file.close();
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> elapsed = end - start;
-    cout << "Time elapsed to print filtered students to file " << filename << ": " << elapsed.count() << " seconds" << endl;
+    cout << "LIST Time elapsed to print filtered students to file " << filename << ": " << elapsed.count() << " seconds" << endl;
 }
 
 void filetimerList(const string &filename, int size, int numHW, list<Stud> &List1, char filteroption) {
@@ -535,6 +535,6 @@ void filetimerList(const string &filename, int size, int numHW, list<Stud> &List
 
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> elapsed = end - start;
-    std::cout << "Total time elapsed for " << size << " students: " << elapsed.count() << " seconds" << std::endl;
+    std::cout << "LIST Total time elapsed for " << size << " students: " << elapsed.count() << " seconds" << std::endl;
     std::cout << std::endl;
 }
