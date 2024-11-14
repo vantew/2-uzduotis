@@ -1,19 +1,17 @@
-#ifndef MYLIB_H_INCLUDED
-#define MYLIB_H_INCLUDED
+#ifndef LIB_H_INCLUDED
+#define LIB_H_INCLUDED
 
 #include <iostream>
-#include <string>
 #include <vector>
-#include <iomanip>
-#include <algorithm>
-#include <limits>
-#include <fstream>
-#include <sstream>
-#include <numeric>
-#include <chrono>
-#include <list>
+#include <sstream> // getline išskirstymui
+#include <random> // atsitiktiniai skaičiai
+#include <algorithm> // sort
+#include <fstream> // darbas su failais
+#include <iomanip> // setw, setprecision, std::left, std::right
+#include <stdexcept> // try catch
+#include <chrono> // funkcijos darbo laiko fiksavimas
 
-using std::list;
+//using std::list;
 using std::endl;
 using std::cout;
 using std::cin;
@@ -37,5 +35,4 @@ using std::exception;
 using std::to_string;
 using std::istringstream;
 
-
-#endif // MYLIB_H_INCLUDED
+#endif
