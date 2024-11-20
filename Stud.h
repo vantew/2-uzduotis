@@ -15,10 +15,17 @@ struct Studentas{
 
 void inputManual(Studentas &Lok);
 void inputScan(vector<Studentas> &studentai);
-void outputManual(Studentas Lok, int vidMed);
+void outputManual(const Studentas& Lok, int vidMed);
 void outputScan(vector<Studentas> &studentai);
 void clean(Studentas &Lok);
-void generate(int studGenSk, int ndGenSk);
-void inputScanSort(string failoPav, int rusiavKateg);
+void generate(int studGenSk, int ndGenSk, int containerChoice);
+template <typename Container>
+void inputScanSort1(string failoPav, int rusiavKateg);
+template <typename Container>
+void inputScanSort2(string failoPav, int rusiavKateg);
+template <typename Container>
+void inputScanSort3(string failoPav, int rusiavKateg);
+
+
 
 #endif

@@ -9,9 +9,10 @@
 #include <fstream> // darbas su failais
 #include <iomanip> // setw, setprecision, std::left, std::right
 #include <stdexcept> // try catch
-#include <chrono> // funkcijos darbo laiko fiksavimas
+#include <chrono>
+#include <list>
 
-//using std::list;
+using std::list;
 using std::endl;
 using std::cout;
 using std::cin;
@@ -34,5 +35,20 @@ using std::cerr;
 using std::exception;
 using std::to_string;
 using std::istringstream;
+
+class Timer {
+  private:
+    using hrClock = std::chrono::high_resolution_clock;
+    using durationDouble = std::chrono::duration<double>;
+    std::chrono::time_point<hrClock> start;
+  public:
+    Timer() : start{ hrClock::now() } {}
+    void reset() {
+      start = hrClock::now();
+    }
+    double elapsed() const {
+      return durationDouble (hrClock::now() - start).count();
+    }
+};
 
 #endif
