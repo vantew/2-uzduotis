@@ -1,9 +1,8 @@
-<<<<<<< HEAD
 # 2-uzduotis
-=======
 CPU: Apple M2
 RAM: 8GB
 HDD: SSD
+
 
 Programos naudojimosi instrukcija:
 Pasirenkama, ar norima ivesti duomenis (0), generuoti failus (1), ar testuoti duomenis (2), t.y. atlikti programos veikimo greicio analize.
@@ -23,4 +22,3 @@ Strategiju spartos realizacija:
 <img width="1256" alt="Screenshot 2024-11-20 at 13 22 24" src="https://github.com/user-attachments/assets/0b0adc67-886a-4c38-910e-47240e003190">
 <img width="486" alt="Screenshot 2024-11-20 at 13 22 36" src="https://github.com/user-attachments/assets/c2ae1494-91b5-4bc3-8beb-124090c24ceb">
 Paskutiniame screenshot'e galima izvelgti (ir tai buvo patikrinta), nors 2 strategija yra keliomis milisekundemis greitesne nei 3 strategija, kuo didesne failo apimtis, zymiai sparciau komandas vykdo 3 strategija.
->>>>>>> origin/v1.0
