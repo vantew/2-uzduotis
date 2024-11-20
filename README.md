@@ -2,71 +2,13 @@ CPU: Apple M2
 RAM: 8GB
 HDD: SSD
 
-Programos sparta, naudojant vector:
-File with 1000 entries generated in: 0.0145177 seconds
-Time it takes to read all students from the file: 0.0469364 seconds
-Time it takes to filter students above or equal to 5 average: 0 seconds
-Time elapsed to print filtered students to file kietakai_1000.txt: 0 seconds
-Total time elapsed for 1000 students: 0.0770746 seconds
+v0.1 - Sukurta programa, kuri leidzia ivairiais budais (rankiniu budu ivesti pazymius, sugeneruoti pazymius arba nuskaityti is failo) ivesti studento duomenis bei egzamino pazymi. Rezultatai atspausdinami surusiuoti pagal vardus arba pavardes (pasirinkta naudotojo) bei leidziama pasirinkti ar stebeti mediana ar vidurki.
+v0.2 - Atliekama programos veikimo greicio (spartos) analize, kurios metu isskiriami sie veikimo laikai: duomenu nuskaitymas is failu, studentu rusiavimas i dvi kategorijas bei surusiuotu studentu isvedimas i du naujus failus. Studentai spausdinami rusiuojant pagal naudotojo pasirinkta parametra - varda, pavarde, vidurki.
+v0.3 - Atliekama programos veikimo greicio (spartos) analize isskiriant v0.2 pateiktus laikus, kurios metu palyginami vector ir list konteineriai.
+v1.0 - Atliekama programos veikimo greicio (spartos) analize isskiriant v0.2 pateiktus laikus, kurios metu palyginami vector ir list konteineriai stebint 2 skirtingas studentu skaidymo strategijas (1 strategija skaido is bendro visu studentu konteinerio i du naujus: kietakus (studentai, kuriu vidurkis >= 5), nuskriaustukus (studentai, kuriu vidurkis < 5), 2 strategija bendra visu studentu konteineri isskiria tik i nuskriaustuku ir juos atima is bendro studentu kiekio, viso to rezultatas: visu studentu konteineryje palieka tik studentai, kuriu vidurkis >= 5, o nuskriaustuku konteinery - studentai, kuriu vidurkis < 5). Isskyrus spartesne strategija, sukuriama nauja 3 strategija ir ji yra optimizuojama tam tikrais algoritmais, si kart taikant strategija tik vektoriaus konteineriui. Galiausiai, yra pateikiamas programos .exe failas.
 
-File with 10000 entries generated in: 0.0780551 seconds
-Time it takes to read all students from the file: 0.0791422 seconds
-Time it takes to filter students above or equal to 5 average: 0 seconds
-Time elapsed to print filtered students to file kietakai_10000.txt: 0.0302325 seconds
-Total time elapsed for 10000 students: 0.18743 seconds
-
-File with 100000 entries generated in: 0.640625 seconds
-Time it takes to read all students from the file: 0.672889 seconds
-Time it takes to filter students above or equal to 5 average: 0.0302339 seconds
-Time elapsed to print filtered students to file kietakai_100000.txt: 0.281249 seconds
-Total time elapsed for 100000 students: 1.64062 seconds
-
-File with 1000000 entries generated in: 6.71875 seconds
-Time it takes to read all students from the file: 5.9375 seconds
-Time it takes to filter students above or equal to 5 average: 0.312505 seconds
-Time elapsed to print filtered students to file kietakai_1000000.txt: 2.89164 seconds
-Total time elapsed for 1000000 students: 15.9375 seconds
-
-File with 10000000 entries generated in: 78.6319 seconds
-Time it takes to read all students from the file: 78.2571 seconds
-Time it takes to filter students above or equal to 5 average: 7.98494 seconds
-Time elapsed to print filtered students to file kietakai_10000000.txt: 32.1735 seconds
-Total time elapsed for 10000000 students: 200.5 seconds
-
-
-Programos sparta naudojant list:
-File with 1000 entries generated in: 0.030236 seconds
-Time it takes to read all students from the file: 0.0624942 seconds
-Time to filter students above 5 average : 0 seconds
-Time elapsed to print filtered students to file kietakai_1000.txt: 0.0156591 seconds
-Total time elapsed for 1000 students: 0.108389 seconds
-
-File with 10000 entries generated in: 0.0780942 seconds
-Time it takes to read all students from the file: 0.0781312 seconds
-Time to filter students above 5 average : 0 seconds
-Time elapsed to print filtered students to file kietakai_10000.txt: 0.031248 seconds
-Total time elapsed for 10000 students: 0.187473 seconds
-
-File with 100000 entries generated in: 0.656262 seconds
-Time it takes to read all students from the file: 0.703165 seconds
-Time to filter students above 5 average : 0.0312469 seconds
-Time elapsed to print filtered students to file kietakai_100000.txt: 0.297898 seconds
-Total time elapsed for 100000 students: 1.70422 seconds
-
-File with 1000000 entries generated in: 6.92215 seconds
-Time it takes to read all students from the file: 6.43767 seconds
-Time to filter students above 5 average : 0.235396 seconds
-Time elapsed to print filtered students to file kietakai_1000000.txt: 2.98343 seconds
-Total time elapsed for 1000000 students: 16.5786 seconds
-
-File with 10000000 entries generated in: 73.6203 seconds
-Time it takes to read all students from the file: 73.1144 seconds
-Time to filter students above 5 average : 7.07915 seconds
-Time elapsed to print filtered students to file kietakai_10000000.txt: 33.9524 seconds
-Total time elapsed for 10000000 students: 187.813 seconds
-
-Failu generavimo laikas abiems - ir vector, ir list - pakankamai panasus, list tik truputi letesnis didesnes apimties failams.
-Failu nuskaitymui spartesnis yra vector, ypac su didesnes apimties failais.
-Duomenu filtravimui mazesnes apimties failams abieju konteineriu sparta apylyge, taciau su didesnes apimties failais - vector spartesnis.
-Konteineriu duomenu spausdinimui mazesnes apimties failams greitesnis list, o didesnes apimties - vector.
-Vertinant visos programos veikimo trukusi laika, vector yra spartesnis beveik visomis prasmemis, kas ypac isryskeja su didesnes apimties failais.
+Programos naudojimosi instrukcija:
+Pasirenkama, ar norima ivesti duomenis (0), generuoti failus (1), ar testuoti duomenis (2), t.y. atlikti programos veikimo greicio analize.
+Pasirinkus (0), naudotojas yra paklaustas ar nori ivesti studentus bei ju pazymius ranka, ar nori juos generuoti, ar nuskaityti is failo. Galiausiai, pateikiamas pasirinkimas stebeti studentu vidurki arba mediana, rusiuojant pagal naudotojo pasirinkta parametra: varda, pavarde, vidurki.
+Pasirinkus (1), naudotojas yra paklaustas ar nori sugeneruoti penkis failus su atsitiktiniais studentais ir siais duomenu irasu kiekiais (1000, 10000, 100000, 1000000, 10000000), ar savarankiskai ivesti norima duomenu irasu kieki. Rezultatas: sugeneruoti failai su atsitiktiniais studentais ir pazymiais tam tikru ivestu duomenu irasu kiekiu.
+Pasirinkus (2) yra atliekama programos veikimo greicio (spartos) analize, kurios metu reikia pasirinkti su kuriuo konteineriu atlikti spartos analize ir ivesti testavimo failo pavadinima.
