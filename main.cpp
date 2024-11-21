@@ -20,6 +20,7 @@ int main(){
     }
     catch (const exception& e) {
         cerr << "ERROR:" << e.what() << endl;
+        system("pause");
         exit(EXIT_FAILURE);
     }
 
@@ -38,6 +39,7 @@ int main(){
             generate(100000, ndGenSk, containerChoice);
             generate(1000000, ndGenSk, containerChoice);
             generate(10000000, ndGenSk, containerChoice);
+            system("pause");
             exit(EXIT_SUCCESS);
         }
 
@@ -47,6 +49,7 @@ int main(){
         cin >> ndGenSk;
 
         generate(studGenSk, ndGenSk, containerChoice);
+        system("pause");
         exit(EXIT_SUCCESS);
 
     } else if (ivedGener == 2) {
@@ -65,6 +68,7 @@ int main(){
             } else {
                 inputScanSort1<list<Studentas>>(failoPav, rusiavKateg);
             }
+            system("pause");
             exit(EXIT_SUCCESS);
         } else if (strateg == 2) {
             cout << "Which file would you like to test?" << endl;
@@ -79,6 +83,7 @@ int main(){
             } else {
                 inputScanSort2<list<Studentas>>(failoPav, rusiavKateg);
             }
+            system("pause");
             exit(EXIT_SUCCESS);
         } else if (strateg == 3) {
             cout << "Which file would you like to test?" << endl;
@@ -93,6 +98,7 @@ int main(){
             } else {
                 inputScanSort3<list<Studentas>>(failoPav, rusiavKateg);
             }
+            system("pause");
             exit(EXIT_SUCCESS);
         }
     }
@@ -106,6 +112,7 @@ int main(){
 
         outputScan(studentai);
 
+        system("pause");
         exit(EXIT_SUCCESS);
     }
 

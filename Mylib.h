@@ -11,6 +11,7 @@
 #include <stdexcept> // try catch
 #include <chrono>
 #include <list>
+#include <numeric>
 
 using std::list;
 using std::endl;
