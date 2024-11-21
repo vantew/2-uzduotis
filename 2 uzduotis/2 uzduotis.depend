@@ -1,0 +1,29 @@
+# depslib dependency file v1.0
+1732223479 source:c:\users\vlue1\desktop\2 uzduotis\2 uzduotis\main.cpp
+	"Mylib.h"
+	"Stud.h"
+
+1732223677 c:\users\vlue1\desktop\2 uzduotis\2 uzduotis\mylib.h
+	<iostream>
+	<vector>
+	<sstream>
+	<random>
+	<algorithm>
+	<fstream>
+	<iomanip>
+	<stdexcept>
+	<chrono>
+	<list>
+	<numeric>
+
+1732223479 c:\users\vlue1\desktop\2 uzduotis\2 uzduotis\stud.h
+	"Mylib.h"
+
+1732223479 source:c:\users\vlue1\desktop\2 uzduotis\2 uzduotis\stud.cpp
+	"Mylib.h"
+	"Stud.h"
+
+1732223479 source:c:\users\vlue1\desktop\2 uzduotis\2 uzduotis\studgeneration.cpp
+	"Mylib.h"
+	"Stud.h"
+
