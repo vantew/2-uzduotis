@@ -20,9 +20,9 @@ Funkcijos:
 4. Skaiciavimai:
   * Sistema apskaiciuoja vidurki ir medianą pagal studentu pazymius.
 
-5. Rusiavimo Parinktys:
-   * Studentai gali buti rusiuojami pagal skirtingus kriterijus, pagal varda, pavarde arba vidurkio pazymi.
+6. Rusiavimo Parinktys:
+  * Studentai gali buti rusiuojami pagal skirtingus kriterijus, pagal varda, pavarde arba vidurkio pazymi.
 
-6. Rule of Three:
+7. Rule of Three:
   * Kodas tinkamai vykdo dinamini atminties valdyma su kopijavimo konstruktoriais, kopijavimo priskyrimo operatoriais ir destruktoriais, kad butu isvengta atminties nuotekiu kopijuojant objektus.
 
