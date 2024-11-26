@@ -2,46 +2,47 @@
 #define STUDENTAS_H_INCLUDED
 
 #include "Mylib.h"
+#include <vector>
+#include <string>
+#include <algorithm> // for std::swap
+#include <cstring>   // for std::strlen, std::memcpy
 
 class Studentas {
 private:
-    std::string vardas;
-    std::string pavarde;
+    char* vardas;
+    char* pavarde;
     std::vector<int> tarpRez;
     int egzamRez;
     double vidurkis;
     double mediana;
     double galutinis;
 
+    void copyString(char*& dest, const char* src);
+
 public:
-    // Constructor
-    Studentas();
+    Studentas(const char* v = nullptr, const char* p = nullptr);
+    ~Studentas();
+    Studentas(const Studentas& other);
+    Studentas& operator=(const Studentas& other);
 
-    // Getters and Setters
-    const std::string& getVardas() const;
-    void setVardas(const std::string&);
-
-    const std::string& getPavarde() const;
-    void setPavarde(const std::string&);
-
+    const char* getVardas() const;
+    void setVardas(const char* name);
+    void setVardas(const std::string& name);
+    const char* getPavarde() const;
+    void setPavarde(const char* surname);
+    void setPavarde(const std::string& surname);
     const std::vector<int>& getTarpRez() const;
-    void setTarpRez(const std::vector<int>& grades) {
-        tarpRez = grades;
-    }
-
+    void setTarpRez(const std::vector<int>& grades);
     int getEgzamRez() const;
-    void setEgzamRez(int);
-
+    void setEgzamRez(int egzaminas);
     double getGalutinis() const;
-    void setGalutinis(double);
+    void setGalutinis(double finalGrade);
 
-    // Member functions
     double calculateVidurkis() const;
     double calculateMediana() const;
     void clean();
 };
 
-// Free functions
 void inputManual(Studentas& Lok);
 void inputScan(std::vector<Studentas>& studentai);
 void outputManual(const Studentas& Lok, int vidMed);

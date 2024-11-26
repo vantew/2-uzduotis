@@ -3,7 +3,7 @@
 
 int main(){
     vector<Studentas> studentai;
-    //list<Studentas> studentailist;
+    list<Studentas> studentailist;
     Studentas laikinasStud;
 
     int studSk, vidMed, ivedGener, studGenSk, ndGenSk, ivedSkait, rusiavKateg, failgen, strateg;
