@@ -3,6 +3,7 @@
 
 int main(){
     vector<Studentas> studentai;
+    //list<Studentas> studentailist;
     Studentas laikinasStud;
 
     int studSk, vidMed, ivedGener, studGenSk, ndGenSk, ivedSkait, rusiavKateg, failgen, strateg;
@@ -79,7 +80,7 @@ int main(){
             cin >> rusiavKateg;
 
             if (containerChoice == 0) {
-                inputScanSort2<vector<Studentas>>(failoPav, rusiavKateg); //
+                inputScanSort2<vector<Studentas>>(failoPav, rusiavKateg);
             } else {
                 inputScanSort2<list<Studentas>>(failoPav, rusiavKateg);
             }
@@ -94,7 +95,7 @@ int main(){
             cin >> rusiavKateg;
 
             if (containerChoice == 0) {
-                inputScanSort3<vector<Studentas>>(failoPav, rusiavKateg); //
+                inputScanSort3<vector<Studentas>>(failoPav, rusiavKateg);
             } else {
                 inputScanSort3<list<Studentas>>(failoPav, rusiavKateg);
             }
@@ -122,7 +123,7 @@ int main(){
     for (int i=0; i<studSk; i++){
         inputManual(laikinasStud);
         studentai.push_back(laikinasStud);
-        clean(laikinasStud);
+        laikinasStud.clean();
     }
 
     cout << "If you want to see the average, type '0'," << endl;
@@ -148,6 +149,6 @@ int main(){
     for (int i=0; i<studSk; i++){
         outputManual(studentai.at(i), vidMed);
     }
-
+    system("pause");
     return 0;
 }
