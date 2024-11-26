@@ -1,3 +1,0 @@
-C:/Users/vlue1/Desktop/2 uzduotis/build/CMakeFiles/Student_App.dir
-C:/Users/vlue1/Desktop/2 uzduotis/build/CMakeFiles/ALL_BUILD.dir
-C:/Users/vlue1/Desktop/2 uzduotis/build/CMakeFiles/ZERO_CHECK.dir
