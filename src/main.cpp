@@ -123,7 +123,7 @@ int main(){
     for (int i=0; i<studSk; i++){
         inputManual(laikinasStud);
         studentai.push_back(laikinasStud);
-        laikinasStud.clean();
+        laikinasStud.reset();
     }
 
     cout << "If you want to see the average, type '0'," << endl;

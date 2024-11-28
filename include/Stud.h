@@ -2,45 +2,48 @@
 #define STUDENTAS_H_INCLUDED
 
 #include "Mylib.h"
-#include <vector>
-#include <string>
-#include <algorithm> // for std::swap
-#include <cstring>   // for std::strlen, std::memcpy
 
 class Studentas {
 private:
-    char* vardas;
-    char* pavarde;
+    std::string vardas;
+    std::string pavarde;
     std::vector<int> tarpRez;
     int egzamRez;
     double vidurkis;
     double mediana;
     double galutinis;
 
-    void copyString(char*& dest, const char* src);
-
 public:
-    Studentas(const char* v = nullptr, const char* p = nullptr);
+    Studentas();
     ~Studentas();
+
     Studentas(const Studentas& other);
     Studentas& operator=(const Studentas& other);
 
-    const char* getVardas() const;
-    void setVardas(const char* name);
+    const std::string& getVardas() const;
     void setVardas(const std::string& name);
-    const char* getPavarde() const;
-    void setPavarde(const char* surname);
+
+    const std::string& getPavarde() const;
     void setPavarde(const std::string& surname);
+
     const std::vector<int>& getTarpRez() const;
     void setTarpRez(const std::vector<int>& grades);
+
     int getEgzamRez() const;
     void setEgzamRez(int egzaminas);
+
     double getGalutinis() const;
     void setGalutinis(double finalGrade);
 
     double calculateVidurkis() const;
     double calculateMediana() const;
-    void clean();
+
+    friend std::ostream& operator<<(std::ostream& os, const Studentas& Lok);
+    //friend std::istream& operator>>(std::istream& is, Studentas& Lok);
+
+
+    void reset();
+
 };
 
 void inputManual(Studentas& Lok);

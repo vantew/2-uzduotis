@@ -36,6 +36,9 @@ using std::cerr;
 using std::exception;
 using std::to_string;
 using std::istringstream;
+using std::ostream;
+using std::swap;
+using std::is_same;
 
 class Timer {
   private:

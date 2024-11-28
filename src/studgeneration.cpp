@@ -1,8 +1,6 @@
 #include "Mylib.h"
 #include "Stud.h"
 
-using namespace std;
-
 void generate(int studGenSk, int ndGenSk, int containerChoice) {
     cout << "File generation initiated" << endl;
 

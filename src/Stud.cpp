@@ -1,75 +1,49 @@
 #include "Mylib.h"
 #include "Stud.h"
 
-void Studentas::copyString(char*& dest, const char* src) {
-    if (src) {
-        size_t len = std::strlen(src);
-        dest = new char[len + 1];
-        std::memcpy(dest, src, len);
-        dest[len] = '\0';
-    } else {
-        dest = nullptr;
-    }
-}
-
-Studentas::Studentas(const char* v, const char* p)
-    : vardas(nullptr), pavarde(nullptr), egzamRez(0), vidurkis(0.0), mediana(0.0), galutinis(0.0) {
-    copyString(vardas, v);
-    copyString(pavarde, p);
-}
+Studentas::Studentas()
+    : vardas(""), pavarde(""), egzamRez(0), vidurkis(0.0), mediana(0.0), galutinis(0.0) {}
 
 Studentas::~Studentas() {
-    delete[] vardas;
-    delete[] pavarde;
 }
 
 Studentas::Studentas(const Studentas& other)
-    : vardas(nullptr), pavarde(nullptr), tarpRez(other.tarpRez), egzamRez(other.egzamRez),
-      vidurkis(other.vidurkis), mediana(other.mediana), galutinis(other.galutinis) {
-    copyString(vardas, other.vardas);
-    copyString(pavarde, other.pavarde);
-}
+    : vardas(other.vardas),
+      pavarde(other.pavarde),
+      tarpRez(other.tarpRez),
+      egzamRez(other.egzamRez),
+      vidurkis(other.vidurkis),
+      mediana(other.mediana),
+      galutinis(other.galutinis) {}
 
 Studentas& Studentas::operator=(const Studentas& other) {
     if (this != &other) {
-        Studentas temp(other);
-        std::swap(vardas, temp.vardas);
-        std::swap(pavarde, temp.pavarde);
-        std::swap(tarpRez, temp.tarpRez);
-        std::swap(egzamRez, temp.egzamRez);
-        std::swap(vidurkis, temp.vidurkis);
-        std::swap(mediana, temp.mediana);
-        std::swap(galutinis, temp.galutinis);
+        vardas = other.vardas;
+        pavarde = other.pavarde;
+        tarpRez = other.tarpRez;
+        egzamRez = other.egzamRez;
+        vidurkis = other.vidurkis;
+        mediana = other.mediana;
+        galutinis = other.galutinis;
     }
     return *this;
 }
 
-const char* Studentas::getVardas() const {
+const std::string& Studentas::getVardas() const {
     return vardas;
 }
 
-void Studentas::setVardas(const char* name) {
-    delete[] vardas;
-    copyString(vardas, name);
-}
-
 void Studentas::setVardas(const std::string& name) {
-    setVardas(name.c_str());
+    vardas = name;
 }
 
-const char* Studentas::getPavarde() const {
+const std::string& Studentas::getPavarde() const {
     return pavarde;
 }
 
-void Studentas::setPavarde(const char* surname) {
-    delete[] pavarde;
-    copyString(pavarde, surname);
-}
-
 void Studentas::setPavarde(const std::string& surname) {
-    setPavarde(surname.c_str());
+    pavarde = surname;
 }
-
 
 const std::vector<int>& Studentas::getTarpRez() const {
     return tarpRez;
@@ -111,6 +85,35 @@ double Studentas::calculateMediana() const {
         return sortedGrades[size / 2];
     }
 }
+
+std::ostream& operator<<(std::ostream& os, const Studentas& Lok) {
+    os << std::left << std::setw(20) << Lok.getPavarde()
+       << std::setw(20) << Lok.getVardas();
+
+    return os;
+}
+
+//std::istream& operator>>(std::istream& is, Studentas& Lok) {
+//    std::string vardas, pavarde;
+//    is >> pavarde >> vardas;
+//    Lok.setPavarde(pavarde);
+//    Lok.setVardas(vardas);
+//
+//    std::vector<int> grades;
+//    int grade;
+//    while (is >> grade) {
+//        grades.push_back(grade);
+//    }
+//
+//    if (!grades.empty()) {
+//        int egzaminas = grades.back();
+//        grades.pop_back();
+//        Lok.setEgzamRez(egzaminas);
+//        Lok.setTarpRez(grades);
+//    }
+//
+//    return is;
+//}
 
 void inputManual(Studentas &Lok){
     int arRandom;
@@ -177,7 +180,7 @@ void inputManual(Studentas &Lok){
 }
 
 void inputScan(vector<Studentas> &studentai) {
-    ifstream fr("studentai_10000.txt"); // File input
+    ifstream fr("studentai_5.txt"); // File input
     string eilute;
 
     getline(fr, eilute); // Skip header
@@ -209,21 +212,19 @@ void inputScan(vector<Studentas> &studentai) {
     fr.close();
 }
 
+void outputManual(const Studentas& Lok, int vidMed) {
 
-void outputManual(const Studentas &Lok, int vidMed) {
+    cout << Lok;
+
     if (vidMed == 0) {
-        double galut_vidurkis = accumulate(Lok.getTarpRez().begin(), Lok.getTarpRez().end(), 0.0) / Lok.getTarpRez().size();
-
-        cout << left << setw(20) << Lok.getPavarde()
-             << setw(20) << Lok.getVardas()
-             << setw(20) << setprecision(2) << fixed << galut_vidurkis << setw(20) << &Lok << endl;
+        double galut_vidurkis = std::accumulate(Lok.getTarpRez().begin(), Lok.getTarpRez().end(), 0.0) / Lok.getTarpRez().size();
+        cout << std::setw(20) << std::setprecision(2) << std::fixed << galut_vidurkis << std::setw(20) << &Lok;
     } else {
         double galut_med = Lok.calculateMediana();
-
-        cout << left << setw(20) << Lok.getPavarde()
-             << setw(20) << Lok.getVardas()
-             << setw(20) << setprecision(2) << fixed << galut_med << setw(20) << &Lok << endl;
+        cout << std::setw(20) << std::setprecision(2) << std::fixed << galut_med << std::setw(20) << &Lok;
     }
+
+    cout << std::endl;
 }
 
 void outputScan(vector<Studentas> &studentai) {
@@ -271,8 +272,7 @@ void outputScan(vector<Studentas> &studentai) {
         double galut_med = stud.calculateMediana();
         double galut_vidurkis = accumulate(visiRez.begin(), visiRez.end(), 0.0) / visiRez.size();
 
-        fw << left << setw(20) << stud.getPavarde()
-           << setw(20) << stud.getVardas()
+        fw << stud
            << setw(20) << setprecision(2) << fixed << galut_vidurkis
            << setw(20) << setprecision(2) << fixed << galut_med
            << endl;
@@ -604,12 +604,9 @@ void inputScanSort3(string failoPav, int rusiavKateg) {
 template void inputScanSort3<std::vector<Studentas>>(std::string, int);
 template void inputScanSort3<std::list<Studentas>>(std::string, int);
 
-
-void Studentas::clean() {
-    delete[] vardas;
-    delete[] pavarde;
-    vardas = nullptr;
-    pavarde = nullptr;
+void Studentas::reset() {
+    vardas.clear();
+    pavarde.clear();
     tarpRez.clear();
     egzamRez = 0;
     vidurkis = 0.0;
