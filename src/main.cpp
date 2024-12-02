@@ -25,21 +25,17 @@ int main(){
         exit(EXIT_FAILURE);
     }
 
-    int containerChoice;
-    cout << "Choose container: '0' for vector, '1' for list: ";
-    cin >> containerChoice;
-
     if (ivedGener == 1){
         cout << "5 Files generation: '1' for yes, '0' for no." << endl;
         cin >> failgen;
         if (failgen == 1) {
             cout << "How many homework grades for each student?" << endl;
             cin >> ndGenSk;
-            generate(1000, ndGenSk, containerChoice);
-            generate(10000, ndGenSk, containerChoice);
-            generate(100000, ndGenSk, containerChoice);
-            generate(1000000, ndGenSk, containerChoice);
-            generate(10000000, ndGenSk, containerChoice);
+            generate(1000, ndGenSk);
+            generate(10000, ndGenSk);
+            generate(100000, ndGenSk);
+            generate(1000000, ndGenSk);
+            generate(10000000, ndGenSk);
             system("pause");
             exit(EXIT_SUCCESS);
         }
@@ -49,13 +45,18 @@ int main(){
         cout << "How many homework grades for each student?" << endl;
         cin >> ndGenSk;
 
-        generate(studGenSk, ndGenSk, containerChoice);
+        generate(studGenSk, ndGenSk);
         system("pause");
         exit(EXIT_SUCCESS);
 
     } else if (ivedGener == 2) {
+        int containerChoice;
+        cout << "Choose container: '0' for vector, '1' for list: ";
+        cin >> containerChoice;
+
         cout << "Which strategy would you like to use? (1, 2 or 3)" << endl;
         cin >> strateg;
+
         if (strateg == 1) {
             cout << "Which file would you like to test?" << endl;
             cout << "Enter the filename, without '.txt': " << endl;
@@ -80,7 +81,7 @@ int main(){
             cin >> rusiavKateg;
 
             if (containerChoice == 0) {
-                inputScanSort2<vector<Studentas>>(failoPav, rusiavKateg);
+                inputScanSort2<vector<Studentas>>(failoPav, rusiavKateg); //
             } else {
                 inputScanSort2<list<Studentas>>(failoPav, rusiavKateg);
             }
@@ -95,7 +96,7 @@ int main(){
             cin >> rusiavKateg;
 
             if (containerChoice == 0) {
-                inputScanSort3<vector<Studentas>>(failoPav, rusiavKateg);
+                inputScanSort3<vector<Studentas>>(failoPav, rusiavKateg); //
             } else {
                 inputScanSort3<list<Studentas>>(failoPav, rusiavKateg);
             }
@@ -108,21 +109,39 @@ int main(){
     cout << "If you want to read data from a file, type '1'." << endl;
     cin >> ivedSkait;
 
+    int containerChoice;
+    cout << "Choose container: '0' for vector, '1' for list: ";
+    cin >> containerChoice;
+
     if (ivedSkait == 1){
-        inputScan(studentai);
-
-        outputScan(studentai);
-
-        system("pause");
-        exit(EXIT_SUCCESS);
+        if (containerChoice == 0) {
+            std::vector<Studentas> studentai;
+            inputScan(studentai);
+            outputScan(studentai);
+        } else {
+            std::list<Studentas> studentailist;
+            inputScan(studentailist);
+            outputScan(studentailist);
+        }
     }
 
-    cout << "How many students will you be grading?" << endl;
+    cout << "How many students will you be grading? ";
     cin >> studSk;
 
-    for (int i=0; i<studSk; i++){
-        inputManual(laikinasStud);
-        studentai.push_back(laikinasStud);
+    for (int i = 0; i < studSk; i++) {
+        Studentas laikinasStud;
+        laikinasStud.setContainerChoice(containerChoice);
+
+        if (containerChoice == 0) {
+            std::vector<int> grades;
+            inputManual(laikinasStud, grades, containerChoice);
+            studentai.push_back(laikinasStud);
+        } else {
+            std::list<int> grades;
+            inputManual(laikinasStud, grades, containerChoice);
+            studentailist.push_back(laikinasStud);
+        }
+
         laikinasStud.reset();
     }
 
@@ -146,9 +165,16 @@ int main(){
         cout << string(80, '-') << endl;
     }
 
-    for (int i=0; i<studSk; i++){
-        outputManual(studentai.at(i), vidMed);
+    if (containerChoice == 0) {
+        for (auto it = studentai.begin(); it != studentai.end(); ++it) {
+            outputManual(*it, vidMed);
+        }
+    } else {
+        for (auto it = studentailist.begin(); it != studentailist.end(); ++it) {
+            outputManual(*it, vidMed);
+        }
     }
+
     system("pause");
     return 0;
 }

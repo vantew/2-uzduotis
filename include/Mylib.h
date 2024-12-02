@@ -12,6 +12,7 @@
 #include <chrono>
 #include <list>
 #include <numeric>
+#include <cstring>
 
 using std::list;
 using std::endl;
