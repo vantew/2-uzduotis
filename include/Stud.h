@@ -11,8 +11,8 @@ private:
     double vidurkis;             // Average
     double mediana;              // Median
     double galutinis;
-    std::vector<int> tarpRez;
-    std::list<int> tarpRezlist;
+    vector<int> tarpRez;
+    list<int> tarpRezlist;
     int containerChoice;         // Final grade
 
     // Helper function for deep copying a C-string
@@ -33,11 +33,11 @@ public:
 
     // Getter and Setter for vardas
     const char* getVardas() const;
-    void setVardas(const std::string& name);
+    void setVardas(const string& name);
 
     // Getter and Setter for pavarde
     const char* getPavarde() const;
-    void setPavarde(const std::string& surname);
+    void setPavarde(const string& surname);
 
     // Getter and Setter for egzamRez
     int getEgzamRez() const;
@@ -65,8 +65,8 @@ public:
     double calculateMediana(const Container& grades) const;
 
     // Stream Operators
-    friend std::ostream& operator<<(std::ostream& os, const Studentas& Lok);
-    friend std::istream& operator>>(std::istream& is, Studentas& Lok);
+    friend ostream& operator<<(ostream& os, const Studentas& Lok);
+    friend istream& operator>>(istream& is, Studentas& Lok);
 
     // Reset Method
     void reset();
@@ -75,23 +75,21 @@ public:
 
 template <typename Container>
 void inputManual(Studentas &Lok, Container &grades, int containerChoice);
+
 template <typename Container>
-void inputScan(Container& studentai);
+void inoutScan(Container& visiStudentai);
 
 void outputManual(const Studentas& Lok, int vidMed);
-
-template <typename Container>
-void outputScan(Container &studentai);
 
 void generate(int studGenSk, int ndGenSk);
 
 template <typename Container>
-void inputScanSort1(std::string failoPav, int rusiavKateg);
+void inputScanSort1(string failoPav, int rusiavKateg);
 
 template <typename Container>
-void inputScanSort2(std::string failoPav, int rusiavKateg);
+void inputScanSort2(string failoPav, int rusiavKateg);
 
 template <typename Container>
-void inputScanSort3(std::string failoPav, int rusiavKateg);
+void inputScanSort3(string failoPav, int rusiavKateg);
 
 #endif

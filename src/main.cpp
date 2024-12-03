@@ -13,6 +13,7 @@ int main(){
         cout << "If you want to enter data, type '0'," << endl;
         cout << "If you want to generate data, type '1'," << endl;
         cout << "If you want to test data, type '2'." << endl;
+        cout << "If you want to demonstrate Rule of three, type '3'." << endl;
         cin >> ivedGener;
 
         if (!cin){
@@ -103,6 +104,17 @@ int main(){
             system("pause");
             exit(EXIT_SUCCESS);
         }
+    } else if (ivedGener == 3) {
+    // RULE OF THREE DEMONSTRACIJA
+        Studentas a;
+        cout << "ivesk student a ";
+        cin >> a;
+        Studentas b;
+        b = a;
+        Studentas c(b);
+        cout << "isvada: " << endl;
+        cout << a << "\n" << b << "\n" << c << endl;
+        exit(EXIT_SUCCESS);
     }
 
     cout << "If you want to enter student data manually, type '0'," << endl;
@@ -115,14 +127,13 @@ int main(){
 
     if (ivedSkait == 1){
         if (containerChoice == 0) {
-            std::vector<Studentas> studentai;
-            inputScan(studentai);
-            outputScan(studentai);
+            vector<Studentas> studentai;
+            inoutScan(studentai);
         } else {
-            std::list<Studentas> studentailist;
-            inputScan(studentailist);
-            outputScan(studentailist);
+            list<Studentas> studentailist;
+            inoutScan(studentailist);
         }
+        exit(EXIT_SUCCESS);
     }
 
     cout << "How many students will you be grading? ";
@@ -133,11 +144,11 @@ int main(){
         laikinasStud.setContainerChoice(containerChoice);
 
         if (containerChoice == 0) {
-            std::vector<int> grades;
+            vector<int> grades;
             inputManual(laikinasStud, grades, containerChoice);
             studentai.push_back(laikinasStud);
         } else {
-            std::list<int> grades;
+            list<int> grades;
             inputManual(laikinasStud, grades, containerChoice);
             studentailist.push_back(laikinasStud);
         }

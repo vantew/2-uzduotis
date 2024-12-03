@@ -40,6 +40,11 @@ using std::istringstream;
 using std::ostream;
 using std::swap;
 using std::is_same;
+using std::istream;
+using std::conditional;
+using std::is_same_v;
+using std::next;
+using std::prev;
 
 class Timer {
   private:
