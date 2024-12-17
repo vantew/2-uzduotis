@@ -1,5 +1,6 @@
 #include "Mylib.h"
 #include "Stud.h"
+#include "Zmogus.h"
 
 char* Studentas::deepCopy(const char* source) {
     if (!source) return nullptr;
@@ -10,26 +11,38 @@ char* Studentas::deepCopy(const char* source) {
 
 // Constructor
 Studentas::Studentas()
-    : vardas(nullptr), pavarde(nullptr), egzamRez(0), vidurkis(0.0), mediana(0.0), galutinis(0.0), containerChoice(0) {}
+    : //vardas(nullptr),
+      //pavarde(nullptr),
+      egzamRez(0),
+      vidurkis(0.0),
+      mediana(0.0),
+      galutinis(0.0),
+      tarpRez(),           // Properly initialize vector
+      tarpRezlist(),       // Properly initialize list
+      containerChoice(0)   // Initialize containerChoice last
+{}
+
 
 // Destructor
 Studentas::~Studentas() {
-    delete[] vardas;
-    delete[] pavarde;
+    //delete[] vardas;
+    //delete[] pavarde;
 }
 
 Studentas::Studentas(const Studentas& other)
-    : vardas(deepCopy(other.vardas)), pavarde(deepCopy(other.pavarde)),
-      egzamRez(other.egzamRez), vidurkis(other.vidurkis), mediana(other.mediana), galutinis(other.galutinis),
-      containerChoice(other.containerChoice), tarpRez(other.tarpRez), tarpRezlist(other.tarpRezlist) {}
+    : Zmogus(other), // Copy constructor of the base class Zmogus
+      egzamRez(other.egzamRez),
+      vidurkis(other.vidurkis),
+      mediana(other.mediana),
+      galutinis(other.galutinis),
+      containerChoice(other.containerChoice),
+      tarpRez(other.tarpRez),
+      tarpRezlist(other.tarpRezlist)
+{}
 
 Studentas& Studentas::operator=(const Studentas& other) {
     if (this != &other) {
-        delete[] vardas;
-        delete[] pavarde;
-
-        vardas = deepCopy(other.vardas);
-        pavarde = deepCopy(other.pavarde);
+        Zmogus::operator=(other); // Copy base class data
         egzamRez = other.egzamRez;
         vidurkis = other.vidurkis;
         mediana = other.mediana;
@@ -41,20 +54,7 @@ Studentas& Studentas::operator=(const Studentas& other) {
     return *this;
 }
 
-const char* Studentas::getVardas() const { return vardas; }
-void Studentas::setVardas(const string& name) {
-    delete[] vardas;
-    vardas = deepCopy(name.c_str());
-}
-
-const char* Studentas::getPavarde() const { return pavarde; }
-void Studentas::setPavarde(const string& surname) {
-    delete[] pavarde;
-    pavarde = deepCopy(surname.c_str());
-}
-
 int Studentas::getEgzamRez() const { return egzamRez; }
-void Studentas::setEgzamRez(int egzaminas) { egzamRez = egzaminas; }
 
 double Studentas::getGalutinis() const { return galutinis; }
 void Studentas::setGalutinis(double finalGrade) { galutinis = finalGrade; }
@@ -71,14 +71,7 @@ const Container& Studentas::getTarpRez() const {
     }
 }
 
-template <typename Container>
-void Studentas::setTarpRez(const Container& grades) {
-    if (containerChoice == 0) {
-        tarpRez.assign(grades.begin(), grades.end());
-    } else {
-        tarpRezlist.assign(grades.begin(), grades.end());
-    }
-}
+
 
 template <>
 const vector<int>& Studentas::getTarpRez<vector<int>>() const {
@@ -90,12 +83,7 @@ const list<int>& Studentas::getTarpRez<list<int>>() const {
     return tarpRezlist;
 }
 
-template <typename Container>
-double Studentas::calculateVidurkis(const Container& grades) const {
-    if (grades.empty()) return 0.0;
-    double sum = accumulate(grades.begin(), grades.end(), 0.0);
-    return sum / grades.size();
-}
+
 
 template <typename Container>
 double Studentas::calculateMediana(const Container& grades) const {
@@ -117,17 +105,36 @@ double Studentas::calculateMediana(const Container& grades) const {
 }
 
 ostream& operator<<(ostream& os, const Studentas& student) {
-    os << setw(20) << left << student.getPavarde()
-       << setw(20) << student.getVardas();
+    os << setw(20) << fixed << left << student.getPavarde()
+       << setw(20) << student.getVardas()
+       << setw(20) << setprecision(2) << student.getGalutinis();
     return os;
 }
 
-istream& operator>>(istream& is, Studentas& Lok) {
-    string tempVardas, tempPavarde;
-    is >> tempVardas;
+istream& operator>>(std::istream& is, Studentas& Lok) {
+    std::string tempVardas, tempPavarde;
+    is >> tempVardas >> tempPavarde;
     Lok.setVardas(tempVardas);
-    is >> tempPavarde;
     Lok.setPavarde(tempPavarde);
+
+    std::vector<int> grades;
+    int grade;
+    while (is >> grade) {
+        if (grade == 0) { // End the cycle if the grade is 0
+            break;
+        }
+        grades.push_back(grade);
+    }
+
+    if (!grades.empty()) {
+        Lok.setEgzamRez(grades.back());
+        grades.pop_back();
+        Lok.setTarpRez(grades);
+
+        double galutinis = (std::accumulate(grades.begin(), grades.end(), 0.0) + Lok.getEgzamRez()) / (grades.size() + 1);
+        Lok.setGalutinis(galutinis);
+    }
+
     return is;
 }
 
@@ -301,32 +308,10 @@ void inputScanSort1(string failoPav, int rusiavKateg) {
     getline(fr, eilute);
     Container visiStudentai;
 
-    using GradeContainer = typename conditional<
-        is_same<Container, vector<Studentas>>::value,
-        vector<int>,
-        list<int>>::type;
-
-
-    while (getline(fr, eilute)) {
-        istringstream iss(eilute);
+    while (std::getline(fr, eilute)) {
+        std::istringstream iss(eilute);
         Studentas Lok;
-
-        string vardas, pavarde;
         iss >> Lok;
-
-        GradeContainer grades;
-        int balas;
-        while (iss >> balas) {
-            grades.push_back(balas);
-        }
-
-        if (!grades.empty()) {
-            Lok.setEgzamRez(grades.back());
-            grades.pop_back();
-            Lok.setTarpRez(grades);
-        }
-
-        Lok.setGalutinis((accumulate(grades.begin(), grades.end(), 0.0) + Lok.getEgzamRez()) / (grades.size() + 1));
         visiStudentai.push_back(Lok);
     }
     fr.close();
@@ -375,8 +360,7 @@ void inputScanSort1(string failoPav, int rusiavKateg) {
     fwProtingi << string(60, '-') << endl;
 
     for (const auto &student : protingi) {
-        fwProtingi << left << student
-                   << setw(20) << setprecision(2) << fixed << student.getGalutinis() << endl;
+        fwProtingi << student << endl;
     }
     fwProtingi.close();
     protingi.clear();
@@ -394,8 +378,7 @@ void inputScanSort1(string failoPav, int rusiavKateg) {
     fwKvaili << string(60, '-') << endl;
 
     for (const auto &student : kvaili) {
-        fwKvaili << left << student
-                 << setw(20) << setprecision(2) << fixed << student.getGalutinis() << endl;
+        fwKvaili << student << endl;
     }
     fwKvaili.close();
     kvaili.clear();
@@ -417,37 +400,12 @@ void inputScanSort2(string failoPav, int rusiavKateg) {
     string eilute;
 
     getline(fr, eilute);
-
     Container visiStudentai;
 
-    using GradeContainer = typename conditional<
-        is_same<Container, vector<Studentas>>::value,
-        vector<int>,
-        list<int>>::type;
-
-
-    while (getline(fr, eilute)) {
-        istringstream iss(eilute);
+    while (std::getline(fr, eilute)) {
+        std::istringstream iss(eilute);
         Studentas Lok;
-
-        string vardas, pavarde;
         iss >> Lok;
-
-        GradeContainer grades;
-        int balas;
-        while (iss >> balas) {
-            grades.push_back(balas);
-        }
-
-        if (!grades.empty()) {
-            Lok.setEgzamRez(grades.back());
-            grades.pop_back();
-            Lok.setTarpRez(grades);
-        }
-
-        double galut_vidurkis = (accumulate(grades.begin(), grades.end(), 0.0) + Lok.getEgzamRez()) / (grades.size() + 1);
-        Lok.setGalutinis(galut_vidurkis);
-
         visiStudentai.push_back(Lok);
     }
     fr.close();
@@ -455,8 +413,8 @@ void inputScanSort2(string failoPav, int rusiavKateg) {
     cout << "File reading time elapsed: " << b.elapsed() << endl;
 
     auto sortFunction = [rusiavKateg](const Studentas &a, const Studentas &b) {
-        if (rusiavKateg == 0) return a.getVardas() < b.getVardas();
-        if (rusiavKateg == 1) return a.getPavarde() < b.getPavarde();
+        if (rusiavKateg == 0) return string(a.getVardas()) < string(b.getVardas());
+        if (rusiavKateg == 1) return string(a.getPavarde()) < string(b.getPavarde());
         return a.getGalutinis() > b.getGalutinis();
     };
 
@@ -500,8 +458,7 @@ void inputScanSort2(string failoPav, int rusiavKateg) {
     fwProtingi << string(60, '-') << endl;
 
     for (const auto &student : visiStudentai) {
-        fwProtingi << left << student
-                   << setw(20) << setprecision(2) << fixed << student.getGalutinis() << endl;
+        fwProtingi << student << endl;
     }
     fwProtingi.close();
     cout << "'Kietakai' students file generation: " << e.elapsed() << endl;
@@ -512,8 +469,7 @@ void inputScanSort2(string failoPav, int rusiavKateg) {
     fwKvaili << string(60, '-') << endl;
 
     for (const auto &student : kvaili) {
-        fwKvaili << left << student
-                 << setw(20) << setprecision(2) << fixed << student.getGalutinis() << endl;
+        fwKvaili << student << endl;
     }
     fwKvaili.close();
     cout << "'Nuskriaustukai' students file generation: " << f.elapsed() << "\n" << endl;
@@ -524,125 +480,103 @@ template void inputScanSort2<vector<Studentas>>(string, int);
 template void inputScanSort2<list<Studentas>>(string, int);
 
 template <typename Container>
-void inputScanSort3(string failoPav, int rusiavKateg) {
-    Timer a;
-    Timer b;
+void inputScanSort3(std::string failoPav, int rusiavKateg) {
+    Timer totalTime;
 
-    failoPav += ".txt";
-    ifstream fr(failoPav);
-    string eilute;
-
-    getline(fr, eilute);
-
-    Container visiStudentai;
-
-    using GradeContainer = typename conditional<
-        is_same<Container, vector<Studentas>>::value,
-        vector<int>,
-        list<int>>::type;
-
-
-    while (getline(fr, eilute)) {
-        istringstream iss(eilute);
-        Studentas Lok;
-
-        string vardas, pavarde;
-        iss >> Lok;
-
-        GradeContainer grades;
-        int balas;
-        while (iss >> balas) {
-            grades.push_back(balas);
-        }
-
-        if (!grades.empty()) {
-            Lok.setEgzamRez(grades.back());
-            grades.pop_back();
-            Lok.setTarpRez(grades);
-        }
-
-        Lok.setGalutinis((accumulate(grades.begin(), grades.end(), 0.0) + Lok.getEgzamRez()) / (grades.size() + 1));
-        visiStudentai.push_back(Lok);
+    std::string filePath = failoPav + ".txt";
+    std::ifstream inputFile(filePath);
+    if (!inputFile) {
+        std::cerr << "Error: Cannot open file " << filePath << std::endl;
+        return;
     }
-    fr.close();
 
-    cout << "File reading time elapsed: " << b.elapsed() << endl;
+    Timer readTime;
+    Container visiStudentai;
+    std::string line;
 
-    Timer c; // Sorting start
-    auto sortFunction = [rusiavKateg](const Studentas &a, const Studentas &b) {
-        if (rusiavKateg == 0) return a.getVardas() < b.getVardas();
-        if (rusiavKateg == 1) return a.getPavarde() < b.getPavarde();
-        return a.getGalutinis() > b.getGalutinis();
+    // Skip header line
+    std::getline(inputFile, line);
+
+    // Read student data
+    while (std::getline(inputFile, line)) {
+        std::istringstream iss(line);
+        Studentas student;
+        iss >> student;
+        visiStudentai.push_back(student);
+    }
+    inputFile.close();
+    std::cout << "File reading time elapsed: " << readTime.elapsed() << std::endl;
+
+    // Sorting based on criteria
+    Timer sortTime;
+    auto sortFunction = [rusiavKateg](const Studentas& a, const Studentas& b) {
+        switch (rusiavKateg) {
+            case 0: return string(a.getVardas()) < string(b.getVardas());
+            case 1: return string(a.getPavarde()) < string(b.getPavarde());
+            default: return a.getGalutinis() > b.getGalutinis();
+        }
     };
 
-    if constexpr (is_same<Container, vector<Studentas>>::value) {
-        sort(visiStudentai.begin(), visiStudentai.end(), sortFunction);
+    if constexpr (std::is_same<Container, std::vector<Studentas>>::value) {
+        std::sort(visiStudentai.begin(), visiStudentai.end(), sortFunction);
     } else {
         visiStudentai.sort(sortFunction);
     }
-    cout << "Data sorting time elapsed: " << c.elapsed() << endl;
+    std::cout << "Data sorting time elapsed: " << sortTime.elapsed() << std::endl;
 
-    Timer d;
+    // Filtering students into separate containers
+    Timer filterTime;
     Container kvaili;
 
-    if constexpr (is_same<Container, vector<Studentas>>::value) {
-        // vector
-        auto it = partition(visiStudentai.begin(), visiStudentai.end(), [](const auto &student) {
-            return student.getGalutinis() >= 5.0;
+    if constexpr (std::is_same<Container, std::vector<Studentas>>::value) {
+        auto it = std::remove_if(visiStudentai.begin(), visiStudentai.end(), [&](const auto& student) {
+            if (student.getGalutinis() < 5.0) {
+                kvaili.push_back(student);
+                return true;
+            }
+            return false;
         });
-
-        kvaili.insert(kvaili.end(), it, visiStudentai.end());
         visiStudentai.erase(it, visiStudentai.end());
-    } else {
-        // list
-        auto it = partition(visiStudentai.begin(), visiStudentai.end(), [](const auto &student) {
-            return student.getGalutinis() >= 5.0;
-        });
-
-        kvaili.splice(kvaili.end(), visiStudentai, it, visiStudentai.end());
+    } else if constexpr (std::is_same<Container, std::list<Studentas>>::value) {
+        auto it = visiStudentai.begin();
+        while (it != visiStudentai.end()) {
+            if (it->getGalutinis() < 5.0) {
+                kvaili.push_back(*it);
+                it = visiStudentai.erase(it);
+            } else {
+                ++it;
+            }
+        }
     }
 
-    cout << "Data filtering time elapsed: " << d.elapsed() << endl;
+    std::cout << "Data filtering time elapsed: " << filterTime.elapsed() << std::endl;
 
-    Timer e;
-    ofstream fwProtingi("kietakai.txt");
-    fwProtingi << left << setw(20) << "Surname" << setw(20) << "First Name" << setw(20) << "Average" << endl;
-    fwProtingi << string(60, '-') << endl;
-
-    for (const auto &student : visiStudentai) {
-        fwProtingi << left << student
-                   << setw(20) << setprecision(2) << fixed << student.getGalutinis() << endl;
+    // Writing "kietakai" students
+    Timer writeTime;
+    std::ofstream fwProtingi("kietakai.txt");
+    fwProtingi << std::left << std::setw(20) << "Surname" << std::setw(20) << "First Name" << std::setw(20) << "Average" << std::endl;
+    fwProtingi << std::string(60, '-') << std::endl;
+    for (const auto& student : visiStudentai) {
+        fwProtingi << student << std::endl;
     }
     fwProtingi.close();
-    cout << "'Kietakai' students file generation: " << e.elapsed() << endl;
+    std::cout << "'Kietakai' students file generation: " << writeTime.elapsed() << std::endl;
 
-    Timer f;
-    ofstream fwKvaili("nuskriaustukai.txt");
-    fwKvaili << left << setw(20) << "Surname" << setw(20) << "First Name" << setw(20) << "Average" << endl;
-    fwKvaili << string(60, '-') << endl;
-
-    for (const auto &student : kvaili) {
-        fwKvaili << left << student
-                 << setw(20) << setprecision(2) << fixed << student.getGalutinis() << endl;
+    // Writing "nuskriaustukai" students
+    Timer writeFailTime;
+    std::ofstream fwKvaili("nuskriaustukai.txt");
+    fwKvaili << std::left << std::setw(20) << "Surname" << std::setw(20) << "First Name" << std::setw(20) << "Average" << std::endl;
+    fwKvaili << std::string(60, '-') << std::endl;
+    for (const auto& student : kvaili) {
+        fwKvaili << student << std::endl;
     }
     fwKvaili.close();
-    cout << "'Nuskriaustukai' students file generation: " << f.elapsed() << "\n" << endl;
+    std::cout << "'Nuskriaustukai' students file generation: " << writeFailTime.elapsed() << "\n" << std::endl;
 
-    cout << "Total time elapsed (excluding file generation): " << a.elapsed() << "\n" << endl;
+    std::cout << "Total time elapsed: " << totalTime.elapsed() << "\n" << std::endl;
 }
-template void inputScanSort3<vector<Studentas>>(string, int);
-template void inputScanSort3<list<Studentas>>(string, int);
 
+// Explicit template instantiation for vector and list
+template void inputScanSort3<std::vector<Studentas>>(std::string, int);
+template void inputScanSort3<std::list<Studentas>>(std::string, int);
 
-void Studentas::reset() {
-    delete[] vardas;
-    delete[] pavarde;
-    tarpRez.clear();
-    tarpRezlist.clear();
-    vardas = nullptr;
-    pavarde = nullptr;
-    egzamRez = 0;
-    vidurkis = 0.0;
-    mediana = 0.0;
-    galutinis = 0.0;
-}

@@ -2,61 +2,51 @@
 #define STUDENTAS_H_INCLUDED
 
 #include "Mylib.h"
+#include "Zmogus.h"
 
-class Studentas {
+class Studentas : public Zmogus {
 private:
-    char* vardas;                // Dynamically allocated name
-    char* pavarde;               // Dynamically allocated surname
-    int egzamRez;                // Exam grade
-    double vidurkis;             // Average
-    double mediana;              // Median
+    //char* vardas;
+    //char* pavarde;
+    int egzamRez;
+    double vidurkis;
+    double mediana;
     double galutinis;
     vector<int> tarpRez;
     list<int> tarpRezlist;
-    int containerChoice;         // Final grade
+    int containerChoice;
 
-    // Helper function for deep copying a C-string
     static char* deepCopy(const char* source);
 
 public:
-    // Default Constructor
     Studentas();
-
-    // Destructor
     ~Studentas();
-
-    // Copy Constructor
     Studentas(const Studentas& other);
-
-    // Copy Assignment Operator
     Studentas& operator=(const Studentas& other);
 
-    // Getter and Setter for vardas
-    const char* getVardas() const;
-    void setVardas(const string& name);
-
-    // Getter and Setter for pavarde
-    const char* getPavarde() const;
-    void setPavarde(const string& surname);
-
-    // Getter and Setter for egzamRez
     int getEgzamRez() const;
-    void setEgzamRez(int egzaminas);
+    void setEgzamRez (int egzaminas) {
+        egzamRez = egzaminas;
+    }
 
-    // Getter and Setter for galutinis
     double getGalutinis() const;
     void setGalutinis(double finalGrade);
 
-    // Getter and Setter for containerChoice
     int getContainerChoice() const;
     void setContainerChoice(int choice);
 
     template <typename Container>
     const Container& getTarpRez() const;
 
-    // Template calculation methods for compatibility with vector or list
     template <typename Container>
-    void setTarpRez(const Container& grades);
+    void setTarpRez(const Container& grades) {
+        tarpRez.assign(grades.begin(), grades.end());
+
+        // Automatically update galutinis
+        if (!tarpRez.empty()) {
+            galutinis = (std::accumulate(tarpRez.begin(), tarpRez.end(), 0.0) + egzamRez) / (tarpRez.size() + 1);
+        }
+    }
 
     template <typename Container>
     double calculateVidurkis(const Container& grades) const;
@@ -64,14 +54,26 @@ public:
     template <typename Container>
     double calculateMediana(const Container& grades) const;
 
-    // Stream Operators
     friend ostream& operator<<(ostream& os, const Studentas& Lok);
     friend istream& operator>>(istream& is, Studentas& Lok);
 
-    // Reset Method
-    void reset();
+    void reset() override {
+        tarpRez.clear();
+        tarpRezlist.clear();
+        egzamRez = 0;
+        vidurkis = 0.0;
+        mediana = 0.0;
+        galutinis = 0.0;
+
+    }
 };
 
+template <typename Container>
+double Studentas::calculateVidurkis(const Container& grades) const {
+    if (grades.empty()) return 0.0;
+    double sum = accumulate(grades.begin(), grades.end(), 0.0);
+    return sum / grades.size();
+}
 
 template <typename Container>
 void inputManual(Studentas &Lok, Container &grades, int containerChoice);
@@ -91,5 +93,6 @@ void inputScanSort2(string failoPav, int rusiavKateg);
 
 template <typename Container>
 void inputScanSort3(string failoPav, int rusiavKateg);
+
 
 #endif

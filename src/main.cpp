@@ -114,6 +114,7 @@ int main(){
         Studentas c(b);
         cout << "isvada: " << endl;
         cout << a << "\n" << b << "\n" << c << endl;
+        system("pause");
         exit(EXIT_SUCCESS);
     }
 
@@ -133,6 +134,7 @@ int main(){
             list<Studentas> studentailist;
             inoutScan(studentailist);
         }
+        system("pause");
         exit(EXIT_SUCCESS);
     }
 
