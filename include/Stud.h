@@ -6,8 +6,6 @@
 
 class Studentas : public Zmogus {
 private:
-    //char* vardas;
-    //char* pavarde;
     int egzamRez;
     double vidurkis;
     double mediana;
@@ -42,9 +40,8 @@ public:
     void setTarpRez(const Container& grades) {
         tarpRez.assign(grades.begin(), grades.end());
 
-        // Automatically update galutinis
         if (!tarpRez.empty()) {
-            galutinis = (std::accumulate(tarpRez.begin(), tarpRez.end(), 0.0) + egzamRez) / (tarpRez.size() + 1);
+            galutinis = (accumulate(tarpRez.begin(), tarpRez.end(), 0.0) + egzamRez) / (tarpRez.size() + 1);
         }
     }
 
@@ -64,7 +61,6 @@ public:
         vidurkis = 0.0;
         mediana = 0.0;
         galutinis = 0.0;
-
     }
 };
 
@@ -93,6 +89,7 @@ void inputScanSort2(string failoPav, int rusiavKateg);
 
 template <typename Container>
 void inputScanSort3(string failoPav, int rusiavKateg);
+
 
 
 #endif
