@@ -100,7 +100,7 @@ Unit test paleidimo instrukcija:
 - cmake ..
 - cmake --build .
 - ctest -C Debug
-rezultate pamatysite toki outputa:
+- rezultate pamatysite toki outputa:
  <img width="718" alt="Screenshot 2024-12-21 at 11 35 23" src="https://github.com/user-attachments/assets/3903c990-9c2d-4fd4-8f1c-04843827348d" />
 
 
