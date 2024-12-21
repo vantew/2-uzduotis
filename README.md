@@ -17,9 +17,9 @@ v0.2
   	* “Kietiakiai”: galutinis balas ≥ 5.0.
 - Matuojami šie procesai:
 	* Failų kūrimas.
- * Duomenų nuskaitymas iš failų.
- * Studentų rūšiavimas į kategorijas.
- * Rezultatų išvedimas į atskirus failus.
+ 	* Duomenų nuskaitymas iš failų.
+	 * Studentų rūšiavimas į kategorijas.
+	 * Rezultatų išvedimas į atskirus failus.
    
 v0.3
 - Pridėtas dviejų konteinerių (std::vector ir std::list) veikimo spartos palyginimas:
