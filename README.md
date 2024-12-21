@@ -1,5 +1,7 @@
 Studentu App'sas
+
 Programa veikia nuo C++17
+
 Sis projektas yra studentu ivedimo sistema, kuri leidzia skirtingais budais ivesti studentus ir ju pazymius, suskaiciuoja bei isveda studentu vidurki ir mediana, o be to, leidzia pasirinkti pagal ka rikiuoti spausdintus studentus. 
 
 v0.1
