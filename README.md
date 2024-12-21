@@ -91,8 +91,8 @@ Spartos analizes atlikimo rezultatai:
    	- sukurta .exe faila galima rasti Debug aplankale
 
 Unit test paleidimo instrukcija:
-jei dar neturite Google test, reikia atsisiusti:  
-- savo aplankale atsidarykite terminala ir klonuokite sia repozitorija:
+- jei dar neturite Google test, reikia atsisiusti:  
+	- savo aplankale atsidarykite terminala ir klonuokite sia repozitorija:
 	git clone https://github.com/google/googletest.git
 - atsisiuskite CMakeLists.txt faila is sio Release
 - mkdir build
