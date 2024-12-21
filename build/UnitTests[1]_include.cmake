@@ -1,5 +1,0 @@
-if(EXISTS "C:/Users/vlue1/Desktop/2 uzduotis/build/UnitTests[1]_tests.cmake")
-  include("C:/Users/vlue1/Desktop/2 uzduotis/build/UnitTests[1]_tests.cmake")
-else()
-  add_test(UnitTests_NOT_BUILT UnitTests_NOT_BUILT)
-endif()
