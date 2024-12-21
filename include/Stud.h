@@ -3,7 +3,9 @@
 
 #include "Mylib.h"
 #include "Zmogus.h"
-
+/**
+ * @brief A class that represents a student.
+ */
 class Studentas : public Zmogus {
 private:
     int egzamRez;
@@ -14,13 +16,12 @@ private:
     list<int> tarpRezlist;
     int containerChoice;
 
-    static char* deepCopy(const char* source);
-
 public:
     Studentas();
     ~Studentas();
     Studentas(const Studentas& other);
     Studentas& operator=(const Studentas& other);
+    static char* deepCopy(const char* source);
 
     int getEgzamRez() const;
     void setEgzamRez (int egzaminas) {

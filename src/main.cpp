@@ -106,14 +106,15 @@ int main(){
         }
     } else if (ivedGener == 3) {
     // RULE OF THREE DEMONSTRACIJA
-        Studentas a;
-        cout << "ivesk student a ";
-        cin >> a;
-        Studentas b;
-        b = a;
-        Studentas c(b);
-        cout << "isvada: " << endl;
-        cout << a << "\n" << b << "\n" << c << endl;
+//        Studentas a;
+//        cout << "ivesk student a ";
+//        cin >> a;
+//        Studentas b;
+//        b = a;
+//        Studentas c(b);
+//        cout << "isvada: " << endl;
+//        cout << a << "\n" << b << "\n" << c << endl;
+
         system("pause");
         exit(EXIT_SUCCESS);
     }

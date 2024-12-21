@@ -2,6 +2,49 @@ Studentu App'sas
 Programa veikia nuo C++17
 Sis projektas yra studentu ivedimo sistema, kuri leidzia skirtingais budais ivesti studentus ir ju pazymius, suskaiciuoja bei isveda studentu vidurki ir mediana, o be to, leidzia pasirinkti pagal ka rikiuoti spausdintus studentus. 
 
+v0.1
+Sukurta programa pagal pradinius reikalavimus, leidžianti:
+	- Įvesti studento vardą, pavardę, namų darbų ir egzamino rezultatus.
+	- Suskaičiuoti galutinį balą, remiantis vidurkiu arba mediana.
+	- Realizuota duomenų nuskaitymo iš failo funkcija.
+v0.2
+	- Generuojami penki atsitiktinių studentų sąrašų failai su įrašų skaičiais: 1,000, 10,000, 100,000, 1,000,000 ir 10,000,000.
+	- Sukurta sistema, leidžianti studentus suskirstyti į dvi kategorijas:
+		“Vargšiukai”: galutinis balas < 5.0.
+		“Kietiakiai”: galutinis balas ≥ 5.0.
+	- Matuojami šie procesai:
+		Failų kūrimas.
+Duomenų nuskaitymas iš failų.
+Studentų rūšiavimas į kategorijas.
+Rezultatų išvedimas į atskirus failus.
+v0.3
+Pridėtas dviejų konteinerių (std::vector ir std::list) veikimo spartos palyginimas:
+Studentų rūšiavimas į kategorijas.
+Duomenų įrašymas į failus.
+Optimizuotas kodas, kad būtų galima lyginti rūšiavimo greitį priklausomai nuo naudojamo konteinerio.
+Išanalizuota, kaip dažnas duomenų šalinimas veikia skirtingus konteinerius.
+v1.0
+Optimizuotas studentų rūšiavimo į kategorijas algoritmas, pritaikant tris strategijas:
+Bendras konteineris skaidomas į du naujus konteinerius.
+Bendras konteineris skaidomas į vieną naują konteinerį, pašalinant elementus iš pagrindinio.
+Naudojama efektyviausia pirmų dviejų strategijų versija.
+Įvertinta skirtingų strategijų sparta ir atminties naudojimas.
+v1.1
+Pakeista duomenų struktūra iš struct į class.
+Palyginta struktūrų ir klasių pagrindu veikiančių programų sparta naudojant:
+Fiksuotą konteinerį (pvz., std::vector).
+Greičiausią dalijimo strategiją.
+Duomenų failus (100,000 ir 1,000,000 įrašų).
+Pridėta eksperimentinė analizė, atsižvelgiant į kompiliatoriaus optimizavimo lygį (-O1, -O2, -O3).
+v1.2
+Realizuoti "Rule of Three" ir įvesties/išvesties operatoriai Studentas klasei.
+Sukurti operatoriai, kurie gali būti naudingi ateities vartotojams.
+v1.5
+Dokumentacija sukurta naudojant Doxygen ir įkelta į repoziciją (HTML formatu).
+Pridėti vienetų testai, naudojant pasirinktą C++ testavimo sistemą (pvz., Google Test).
+Pademonstruota pagrindinė testavimo nauda.
+Aptarta Test Driven Development (TDD) koncepcija.
+
 Funkcijos:
 1. Duomenu ivedimas:
   * Metodas: void inputManual(Studentas& student)

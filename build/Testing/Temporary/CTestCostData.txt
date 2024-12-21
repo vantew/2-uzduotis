@@ -1,0 +1,5 @@
+StudentasTest.NameAndSurnameTest 1 0.0335726
+StudentasTest.CalculateMedianaVector 1 0.016568
+StudentasTest.CalculateMedianaList 1 0.0136779
+StudentasTest.CalculateMedianaEmpty 1 0.0149186
+---

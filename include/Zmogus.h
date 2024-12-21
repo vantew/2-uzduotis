@@ -12,17 +12,17 @@ protected:
 
 public:
     Zmogus();
-    Zmogus(const string& name, const string& surname);
+    Zmogus(const std::string& name, const std::string& surname);
     virtual ~Zmogus();
     Zmogus(const Zmogus& other);
     Zmogus& operator=(const Zmogus& other);
 
     const char* getVardas() const;
-    void setVardas(const string& name);
+    void setVardas(const std::string& name);
 
     const char* getPavarde() const;
-    void setPavarde(const string& surname);
+    void setPavarde(const std::string& surname);
 
-    virtual void reset() = 0;
+    virtual void reset();
 };
 #endif // ZMOGUS_H_INCLUDED

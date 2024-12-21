@@ -1,0 +1,111 @@
+Start testing: Dec 21 11:35 FLE Standard Time
+----------------------------------------------------------
+1/4 Testing: StudentasTest.NameAndSurnameTest
+1/4 Test: StudentasTest.NameAndSurnameTest
+Command: "C:/Users/vlue1/Desktop/2 uzduotis/build/Debug/UnitTests.exe" "--gtest_filter=StudentasTest.NameAndSurnameTest" "--gtest_also_run_disabled_tests"
+Directory: C:/Users/vlue1/Desktop/2 uzduotis/build
+"StudentasTest.NameAndSurnameTest" start time: Dec 21 11:35 FLE Standard Time
+Output:
+----------------------------------------------------------
+Running main() from C:\Users\vlue1\Desktop\2 uzduotis\googletest\googletest\src\gtest_main.cc
+Note: Google Test filter = StudentasTest.NameAndSurnameTest
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from StudentasTest
+[ RUN      ] StudentasTest.NameAndSurnameTest
+[       OK ] StudentasTest.NameAndSurnameTest (0 ms)
+[----------] 1 test from StudentasTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (4 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Passed.
+"StudentasTest.NameAndSurnameTest" end time: Dec 21 11:35 FLE Standard Time
+"StudentasTest.NameAndSurnameTest" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/4 Testing: StudentasTest.CalculateMedianaVector
+2/4 Test: StudentasTest.CalculateMedianaVector
+Command: "C:/Users/vlue1/Desktop/2 uzduotis/build/Debug/UnitTests.exe" "--gtest_filter=StudentasTest.CalculateMedianaVector" "--gtest_also_run_disabled_tests"
+Directory: C:/Users/vlue1/Desktop/2 uzduotis/build
+"StudentasTest.CalculateMedianaVector" start time: Dec 21 11:35 FLE Standard Time
+Output:
+----------------------------------------------------------
+Running main() from C:\Users\vlue1\Desktop\2 uzduotis\googletest\googletest\src\gtest_main.cc
+Note: Google Test filter = StudentasTest.CalculateMedianaVector
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from StudentasTest
+[ RUN      ] StudentasTest.CalculateMedianaVector
+[       OK ] StudentasTest.CalculateMedianaVector (0 ms)
+[----------] 1 test from StudentasTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Passed.
+"StudentasTest.CalculateMedianaVector" end time: Dec 21 11:35 FLE Standard Time
+"StudentasTest.CalculateMedianaVector" time elapsed: 00:00:00
+----------------------------------------------------------
+
+3/4 Testing: StudentasTest.CalculateMedianaList
+3/4 Test: StudentasTest.CalculateMedianaList
+Command: "C:/Users/vlue1/Desktop/2 uzduotis/build/Debug/UnitTests.exe" "--gtest_filter=StudentasTest.CalculateMedianaList" "--gtest_also_run_disabled_tests"
+Directory: C:/Users/vlue1/Desktop/2 uzduotis/build
+"StudentasTest.CalculateMedianaList" start time: Dec 21 11:35 FLE Standard Time
+Output:
+----------------------------------------------------------
+Running main() from C:\Users\vlue1\Desktop\2 uzduotis\googletest\googletest\src\gtest_main.cc
+Note: Google Test filter = StudentasTest.CalculateMedianaList
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from StudentasTest
+[ RUN      ] StudentasTest.CalculateMedianaList
+[       OK ] StudentasTest.CalculateMedianaList (0 ms)
+[----------] 1 test from StudentasTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"StudentasTest.CalculateMedianaList" end time: Dec 21 11:35 FLE Standard Time
+"StudentasTest.CalculateMedianaList" time elapsed: 00:00:00
+----------------------------------------------------------
+
+4/4 Testing: StudentasTest.CalculateMedianaEmpty
+4/4 Test: StudentasTest.CalculateMedianaEmpty
+Command: "C:/Users/vlue1/Desktop/2 uzduotis/build/Debug/UnitTests.exe" "--gtest_filter=StudentasTest.CalculateMedianaEmpty" "--gtest_also_run_disabled_tests"
+Directory: C:/Users/vlue1/Desktop/2 uzduotis/build
+"StudentasTest.CalculateMedianaEmpty" start time: Dec 21 11:35 FLE Standard Time
+Output:
+----------------------------------------------------------
+Running main() from C:\Users\vlue1\Desktop\2 uzduotis\googletest\googletest\src\gtest_main.cc
+Note: Google Test filter = StudentasTest.CalculateMedianaEmpty
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from StudentasTest
+[ RUN      ] StudentasTest.CalculateMedianaEmpty
+[       OK ] StudentasTest.CalculateMedianaEmpty (0 ms)
+[----------] 1 test from StudentasTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"StudentasTest.CalculateMedianaEmpty" end time: Dec 21 11:35 FLE Standard Time
+"StudentasTest.CalculateMedianaEmpty" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Dec 21 11:35 FLE Standard Time
