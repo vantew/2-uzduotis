@@ -86,8 +86,22 @@ Spartos analizes atlikimo rezultatai:
 .exe failo paleidimo instrukcija:
 	- isikeliame CMakeLists.txt faila is github
 	- atsidarius terminala projekto aplankale, ivedame --cmake CMakeLists.txt
-	- po to, --install .
-	- --build .
-	- galiausiai, galime atrasti sukurta .exe faila sugeneruotame Debug aplankale
+ 	- po to, --cmake install .
+  	- --cmake build .
+   	- sukurta .exe faila galima rasti Debug aplankale
+
+Unit test paleidimo instrukcija:
+jei dar neturite Google test, reikia atsisiusti:  
+- savo aplankale atsidarykite terminala ir klonuokite sia repozitorija:
+	git clone https://github.com/google/googletest.git
+- atsisiuskite CMakeLists.txt faila is sio Release
+- mkdir build
+- cd build
+- cmake ..
+- cmake --build .
+- ctest -C Debug
+rezultate pamatysite toki outputa:
+ <img width="718" alt="Screenshot 2024-12-21 at 11 35 23" src="https://github.com/user-attachments/assets/3903c990-9c2d-4fd4-8f1c-04843827348d" />
+
 
 
