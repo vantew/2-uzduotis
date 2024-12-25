@@ -83,14 +83,14 @@ Spartos analizes atlikimo rezultatai:
 * Eksperimentine analize lyginant kompiliatoriu optimizavimo lygius pasirinkus 1000000 ir 10000000 duomenu irasu failus:
 <img width="1626" alt="Screenshot 2024-11-26 at 22 17 41" src="https://github.com/user-attachments/assets/b24e643c-eb42-4f6e-9dde-5635620a6174">
 
-.exe failo paleidimo instrukcija:
+.exe failo paleidimo instrukcija
 	- isikeliame CMakeLists.txt faila is github
 	- atsidarius terminala projekto aplankale, ivedame --cmake CMakeLists.txt
  	- po to, --cmake install .
   	- --cmake build .
    	- sukurta .exe faila galima rasti Debug aplankale
 
-Unit test paleidimo instrukcija:
+Unit test paleidimo instrukcija
 - jei dar neturite Google test, reikia atsisiusti:  
 	- savo aplankale atsidarykite terminala ir klonuokite sia repozitorija:
 	git clone https://github.com/google/googletest.git
